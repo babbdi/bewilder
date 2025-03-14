@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=3 uid="uid://brng8amyq2src"]
+
+[ext_resource type="Script" uid="uid://bpgl8hpd1evwd" path="res://enemies/spawner.gd" id="1_876pp"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_ug1mo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ug1mo"]
+albedo_color = Color(2.11775e-06, 0.734417, 0.614151, 1)
+
+[sub_resource type="Animation" id="Animation_ug1mo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:outer_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:surface_material_override/0:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(2.11775e-06, 0.734417, 0.614151, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_876pp"]
+resource_name = "spawner_idle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:inner_radius")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.61757, 7.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 0.001, 1.488]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:outer_radius")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.56667, 7.16667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.438, 0.067]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.866667, 3.59426, 8.35808),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.306332, 2.5609, -2.22245), Vector3(-0.0639824, 0.698882, 2.76367)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:surface_material_override/0:albedo_color")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.06667, 5.93338, 8.47218),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(2.11775e-06, 0.734417, 0.614151, 1), Color(1, 0.371173, 0.603192, 1), Color(0.361329, 0.50104, 1, 1), Color(0.726541, 0.554381, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4h5do"]
+_data = {
+&"RESET": SubResource("Animation_ug1mo"),
+&"spawner_idle": SubResource("Animation_876pp")
+}
+
+[node name="Spawner" type="Node3D"]
+script = ExtResource("1_876pp")
+
+[node name="the_donut" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_ug1mo")
+surface_material_override/0 = SubResource("StandardMaterial3D_ug1mo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="the_donut"]
+libraries = {
+&"": SubResource("AnimationLibrary_4h5do")
+}
+autoplay = "spawner_idle"
+
+[node name="InBetweenWaves" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="InBetweenWaves" to="." method="_on_in_between_waves_timeout"]

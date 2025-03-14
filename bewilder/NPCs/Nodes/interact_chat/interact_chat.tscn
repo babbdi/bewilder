@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpow0mvc4neou"]
+
+[ext_resource type="Script" uid="uid://bqhe0ruvkoqcj" path="res://NPCs/Melbourne/interact_chat.gd" id="1_1luea"]
+
+[sub_resource type="TextMesh" id="TextMesh_1luea"]
+text = "chat"
+font_size = 31
+
+[sub_resource type="TextMesh" id="TextMesh_qv17l"]
+text = "!"
+font_size = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1luea"]
+albedo_color = Color(0.853027, 0.575068, 0.0705518, 1)
+
+[sub_resource type="Animation" id="Animation_1luea"]
+resource_name = "!_hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interact_text:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interact_text:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.7, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_04jyp"]
+resource_name = "!_show_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interact_text:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.7, 0), Vector3(0, 2.6, 0), Vector3(0, 2.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interact_text:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.001, 0.001, 0.001), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interact_text:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qv17l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interact_text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Interact_text:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interact_text:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5iku"]
+_data = {
+&"!_hide": SubResource("Animation_1luea"),
+&"!_show_up": SubResource("Animation_04jyp"),
+&"RESET": SubResource("Animation_qv17l")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qv17l"]
+radius = 2.98651
+
+[node name="interact_chat" type="Node3D" groups=["interactable"]]
+script = ExtResource("1_1luea")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("TextMesh_1luea")
+
+[node name="UI" type="Node3D" parent="."]
+
+[node name="Interact_text" type="MeshInstance3D" parent="UI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("TextMesh_qv17l")
+surface_material_override/0 = SubResource("StandardMaterial3D_1luea")
+
+[node name="ui_interaction" type="AnimationPlayer" parent="UI"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_j5iku")
+}
+autoplay = "!_hide"
+
+[node name="AnimationTree" type="AnimationTree" parent="UI"]
+
+[node name="near_area" type="Area3D" parent="UI"]
+monitorable = false
+
+[node name="near_box" type="CollisionShape3D" parent="UI/near_area"]
+shape = SubResource("SphereShape3D_qv17l")
+
+[connection signal="body_entered" from="UI/near_area" to="." method="_on_near_area_body_entered"]
+[connection signal="body_exited" from="UI/near_area" to="." method="_on_near_area_body_exited"]

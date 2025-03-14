@@ -1,0 +1,177 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvewtibqanhmb"]
+
+[ext_resource type="PackedScene" uid="uid://dhy3cyp8rvdg7" path="res://NPCs/Melbourne/Skin/melbourne_skin.tscn" id="1_pboan"]
+[ext_resource type="Script" uid="uid://crlgkpys74olg" path="res://NPCs/Melbourne/npc_melbourne.gd" id="1_uyyw6"]
+[ext_resource type="Script" uid="uid://4ivnb2t71pfj" path="res://NPCs/Melbourne/look_around.gd" id="4_vkok6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pboan"]
+height = 2.39591
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uyyw6"]
+size = Vector3(0.0319092, 2, 1.0823)
+
+[node name="npc_melbourne" type="CharacterBody3D" node_paths=PackedStringArray("head")]
+script = ExtResource("1_uyyw6")
+head = NodePath("Marker3D")
+
+[node name="MelbourneSkin" parent="." instance=ExtResource("1_pboan")]
+
+[node name="Skeleton3D" parent="MelbourneSkin/mel/blacksmith" index="0"]
+bones/0/position = Vector3(0.0232775, 2.88416, -0.0066348)
+bones/1/scale = Vector3(1.00111, 1.00111, 1.00111)
+bones/2/rotation = Quaternion(-0.00744033, -2.05241e-06, 0.00097558, 0.999972)
+bones/3/rotation = Quaternion(7.936e-10, 2.76176e-10, -0.0357677, 0.99936)
+bones/3/scale = Vector3(0.998895, 0.998895, 0.998895)
+bones/4/rotation = Quaternion(-0.0761031, 0.125023, 0.03009, 0.988773)
+bones/5/position = Vector3(0.335288, 1.58436, 1.56134)
+bones/5/rotation = Quaternion(0.443284, 0.550908, -0.550908, 0.443284)
+bones/6/position = Vector3(0.129136, 0.640638, 1.74952)
+bones/6/rotation = Quaternion(0.443323, 0.55086, -0.550956, 0.443245)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(-0.384348, 1.58437, 1.56134)
+bones/7/rotation = Quaternion(0.443284, -0.550908, 0.550908, 0.443284)
+bones/8/position = Vector3(-0.129137, 0.640638, 1.74952)
+bones/8/rotation = Quaternion(-0.443323, 0.55086, -0.550956, -0.443245)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.000923015, 0.00181977, -0.707439, 0.706772)
+bones/10/scale = Vector3(0.998895, 0.998895, 0.998895)
+bones/11/rotation = Quaternion(-0.0296255, 0.063476, -0.62459, 0.777805)
+bones/12/rotation = Quaternion(0.238936, -1.17385e-07, 2.70257e-07, 0.971035)
+bones/14/rotation = Quaternion(0.477446, 0.0307595, -0.0564556, 0.876306)
+bones/17/rotation = Quaternion(0.222142, 0.0143091, -0.0626677, 0.972893)
+bones/20/rotation = Quaternion(0.00479132, 0.000308646, -0.0642801, 0.99792)
+bones/23/rotation = Quaternion(-0.233783, -0.0150615, -0.0625029, 0.970161)
+bones/26/rotation = Quaternion(-0.534161, -0.0344135, -0.0543066, 0.842935)
+bones/27/rotation = Quaternion(0.000922887, -0.00181998, 0.707439, 0.706772)
+bones/27/scale = Vector3(0.998895, 0.998895, 0.998895)
+bones/28/rotation = Quaternion(-0.0644191, -0.129253, 0.644969, 0.75044)
+bones/29/rotation = Quaternion(0.43645, -1.67654e-09, -6.42308e-07, 0.899728)
+bones/30/rotation = Quaternion(0.00326877, -0.0417097, 0.0125893, 0.999045)
+bones/32/rotation = Quaternion(0.475679, -0.0512857, 0.0941295, 0.873063)
+bones/33/rotation = Quaternion(-0.000202283, 2.83388e-05, 0.138576, 0.990352)
+bones/35/rotation = Quaternion(0.22132, -0.0238617, 0.104504, 0.969292)
+bones/36/rotation = Quaternion(-0.000133629, 1.87027e-05, 0.138576, 0.990352)
+bones/38/rotation = Quaternion(0.0047736, -0.000514662, 0.107193, 0.994227)
+bones/39/rotation = Quaternion(-0.0177324, 0.00248112, 0.138547, 0.990194)
+bones/41/rotation = Quaternion(-0.232918, 0.0251117, 0.104209, 0.966571)
+bones/42/rotation = Quaternion(-2.32648e-05, 3.26399e-06, 0.138607, 0.990347)
+bones/44/rotation = Quaternion(-0.532184, 0.0573767, 0.0905437, 0.839815)
+bones/45/scale = Vector3(0.998895, 0.998895, 0.998901)
+bones/46/rotation = Quaternion(0.697859, 0.116704, 0.697333, 0.114456)
+bones/46/scale = Vector3(1, 0.999999, 1.0001)
+bones/47/rotation = Quaternion(-0.00228547, 0.000353355, 0.208184, 0.978087)
+bones/49/rotation = Quaternion(0.697864, -0.116681, -0.697336, 0.11443)
+bones/49/scale = Vector3(1, 1, 1.0001)
+bones/50/rotation = Quaternion(-0.00228965, -0.000353387, -0.208186, 0.978087)
+bones/52/position = Vector3(0.456739, 0.122827, 0.154571)
+bones/54/position = Vector3(-0.40768, 0.122827, 0.154571)
+bones/56/position = Vector3(1.24751, 2.35282, 0.441863)
+bones/57/position = Vector3(0.468287, 5.09163, 3.46988)
+bones/58/position = Vector3(-0.419228, 5.09163, 3.46988)
+bones/59/position = Vector3(-1.07785, 2.89501, 0.228891)
+
+[node name="bigode_l" parent="MelbourneSkin/mel/blacksmith/Skeleton3D" index="15"]
+transform = Transform3D(-0.454476, 0.890726, 0.00764459, -0.134865, -0.0603239, -0.989026, -0.88049, -0.45052, 0.147543, 0.655646, 6.57843, 1.5389)
+
+[node name="bigode_r" parent="MelbourneSkin/mel/blacksmith/Skeleton3D" index="16"]
+transform = Transform3D(0.0404575, -0.999149, 0.00797564, 0.14766, -0.00191579, -0.989036, 0.98821, 0.0411916, 0.147457, 0.405808, 6.58615, 1.60391)
+
+[node name="front_bang2" parent="MelbourneSkin/mel/blacksmith/Skeleton3D" index="17"]
+transform = Transform3D(0.967347, 0.19325, -0.163995, -0.0298964, -0.555519, -0.830967, -0.251686, 0.808736, -0.531602, 0.309125, 8.75404, 0.461713)
+
+[node name="apron2" parent="MelbourneSkin/mel/blacksmith/Skeleton3D" index="18"]
+transform = Transform3D(1.00111, -2.81807e-09, 3.48346e-07, 1.85887e-08, -0.999354, -0.0592089, 3.47914e-07, 0.0592089, -0.999354, -0.0116169, 2.94155, 0.824144)
+
+[node name="AnimationTree" parent="MelbourneSkin" index="1"]
+"parameters/blend look/add_amount" = 0
+
+[node name="cs_mel" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_pboan")
+
+[node name="look_around" type="Node3D" parent="."]
+script = ExtResource("4_vkok6")
+
+[node name="-90" type="Node3D" parent="look_around"]
+transform = Transform3D(0.0154631, 0, 0.999881, 0, 1, 0, -0.999881, 0, 0.0154631, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="look_around/-90"]
+
+[node name="-90" type="CollisionShape3D" parent="look_around/-90/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.184045, 1, 1.65885)
+shape = SubResource("BoxShape3D_uyyw6")
+debug_color = Color(0.965864, 0, 0.484082, 0.42)
+
+[node name="-60" type="Node3D" parent="look_around"]
+transform = Transform3D(0.513332, 0, 0.85819, 0, 1, 0, -0.85819, 0, 0.513332, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="look_around/-60"]
+
+[node name="-60" type="CollisionShape3D" parent="look_around/-60/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 1, 1.65885)
+shape = SubResource("BoxShape3D_uyyw6")
+debug_color = Color(0.965864, 0, 0.484082, 0.42)
+
+[node name="-45" type="Node3D" parent="look_around"]
+transform = Transform3D(0.873654, 0, 0.486549, 0, 1, 0, -0.486549, 0, 0.873654, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="look_around/-45"]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 0, 0)
+
+[node name="-45" type="CollisionShape3D" parent="look_around/-45/Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -1.19209e-07, 1, 1.65885)
+shape = SubResource("BoxShape3D_uyyw6")
+debug_color = Color(0.965864, 0, 0.484082, 0.42)
+
+[node name="0" type="Node3D" parent="look_around"]
+
+[node name="Area3D" type="Area3D" parent="look_around/0"]
+
+[node name="0" type="CollisionShape3D" parent="look_around/0/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49012e-08, 1, 1.65885)
+shape = SubResource("BoxShape3D_uyyw6")
+debug_color = Color(0.965864, 0, 0.484082, 0.42)
+
+[node name="45" type="Node3D" parent="look_around"]
+transform = Transform3D(0.85819, 0, -0.513332, 0, 1, 0, 0.513332, 0, 0.85819, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="look_around/45"]
+
+[node name="45" type="CollisionShape3D" parent="look_around/45/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.65885)
+shape = SubResource("BoxShape3D_uyyw6")
+debug_color = Color(0.965864, 0, 0.484082, 0.42)
+
+[node name="60" type="Node3D" parent="look_around"]
+transform = Transform3D(0.486549, 0, -0.873654, 0, 1, 0, 0.873654, 0, 0.486549, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="look_around/60"]
+
+[node name="60" type="CollisionShape3D" parent="look_around/60/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 1, 1.65885)
+shape = SubResource("BoxShape3D_uyyw6")
+debug_color = Color(0.965864, 0, 0.484082, 0.42)
+
+[node name="90" type="Node3D" parent="look_around"]
+transform = Transform3D(-0.0154631, 0, -0.999881, 0, 1, 0, 0.999881, 0, -0.0154631, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="look_around/90"]
+
+[node name="90" type="CollisionShape3D" parent="look_around/90/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67638e-08, 1, 1.65885)
+shape = SubResource("BoxShape3D_uyyw6")
+debug_color = Color(0.965864, 0, 0.484082, 0.42)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[connection signal="body_entered" from="look_around/-90/Area3D" to="look_around" method="degree_m90"]
+[connection signal="body_entered" from="look_around/-60/Area3D" to="look_around" method="degree_m60"]
+[connection signal="body_entered" from="look_around/-45/Area3D" to="look_around" method="degree_m45"]
+[connection signal="body_entered" from="look_around/0/Area3D" to="look_around" method="degree_0"]
+[connection signal="body_entered" from="look_around/45/Area3D" to="look_around" method="degree_45"]
+[connection signal="body_entered" from="look_around/60/Area3D" to="look_around" method="degree_60"]
+[connection signal="body_entered" from="look_around/90/Area3D" to="look_around" method="degree_90"]
+
+[editable path="MelbourneSkin"]
+[editable path="MelbourneSkin/mel"]

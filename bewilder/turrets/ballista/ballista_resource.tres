@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="turret_resource" load_steps=2 format=3 uid="uid://bu6f3xl40x3hv"]
+
+[ext_resource type="Script" uid="uid://cxbtl5rhamnu6" path="res://turrets/turret_resource.gd" id="1_ucb3v"]
+
+[resource]
+script = ExtResource("1_ucb3v")
+name = "ballista"
+max_health = 100.0
+elevation_speed_deg = 30.0
+rotation_speed_deg = 30.0
+min_elevation_deg = 0.0
+max_elevation_deg = 60.0
+projectile_damage = 10.0
+projectile_speed = 50.0
+projectile_pen = 5
+projectile_life_time = 30.0
+knockbackForce = 5
+current_ammo = 0.0
+magazine_capacity = 1.0
+reserve_ammo = inf
+max_reserve_ammo = inf
+one_shot = true
+auto_fire = false
+max_fire_rate_ms = 10000.0

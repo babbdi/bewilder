@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp0flfuhec3yd"]
+
+[ext_resource type="Script" uid="uid://jqwnaaj261vf" path="res://enemies/AI/Parts/Health.gd" id="1_qo68p"]
+
+[node name="Health" type="Area3D"]
+script = ExtResource("1_qo68p")
+metadata/_custom_type_script = "uid://bwf1fnbv8s1xo"

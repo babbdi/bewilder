@@ -1,0 +1,284 @@
+[gd_scene load_steps=17 format=4 uid="uid://brgu5bnrwxjvh"]
+
+[ext_resource type="Script" uid="uid://bktbxrg30d0m5" path="res://turrets/blueprints/blueprint.gd" id="1_w7c6h"]
+[ext_resource type="Texture2D" uid="uid://dj6jt5fcebirb" path="res://turrets/blueprints/UI/under_circle.png" id="2_37m87"]
+[ext_resource type="Texture2D" uid="uid://yisvp7gc6lq3" path="res://turrets/blueprints/UI/progress_circle.png" id="3_ngctx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrchb"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_l63j0"]
+_surfaces = [{
+"aabb": AABB(-0.540415, -0.540415, -0.540415, 1.08083, 1.08083, 1.08083),
+"attribute_data": PackedByteArray("AAAAAAAAAACrqio/AAAAAKuqqj4AAAAAAACAPwAAAAAAAAAAAAAAP6uqKj8AAAA/q6qqPgAAAD8AAIA/AAAAP6uqqj4AAAAAAAAAAAAAAD+rqio/AAAAAKuqqj4AAAA/q6qqPgAAAD8AAAAAAACAP6uqKj8AAAA/q6qqPgAAgD+rqqo+AAAAP6uqKj8AAAA/q6oqPwAAAD8AAIA/AAAAP6uqqj4AAIA/q6oqPwAAgD+rqio/AACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAAEAAIAAgAEAAYAAQAFAAMAAwAFAAcACAAMAAoACgAMAA4ACQANAAsACwANAA8AEAAUABIAEgAUABYAEQAVABMAEwAVABcA"),
+"material": SubResource("StandardMaterial3D_qrchb"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("m1gKv5tYCj+bWAo/m1gKP5tYCj+bWAq/m1gKP5tYCj+bWAo/m1gKv5tYCj+bWAq/m1gKv5tYCr+bWAo/m1gKP5tYCr+bWAq/m1gKP5tYCr+bWAo/m1gKv5tYCr+bWAq/m1gKP5tYCj+bWAo/m1gKv5tYCj+bWAq/m1gKP5tYCj+bWAq/m1gKv5tYCj+bWAo/m1gKP5tYCr+bWAo/m1gKv5tYCr+bWAq/m1gKP5tYCr+bWAq/m1gKv5tYCr+bWAo/m1gKP5tYCj+bWAo/m1gKv5tYCr+bWAo/m1gKv5tYCj+bWAo/m1gKP5tYCr+bWAo/m1gKP5tYCj+bWAq/m1gKv5tYCr+bWAq/m1gKv5tYCj+bWAq/m1gKP5tYCr+bWAq//3//f////7//////AAD/v/9//3////+//////wAA/7//f/9/////v/////8AAP+//3//f////7//////AAD/v///AID/////AAAAgP9//7///wCA/////wAAAID/f/+///8AgP////8AAACA/3//v///AID/////AAAAgP9//78AgP//AAD/vwCAAAD///+/AID//wAA/78AgAAA////vwCA//8AAP+/AIAAAP///78AgP//AAD/vwCAAAD///+/")
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tiglk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lhe0o"]
+radius = 3.61416
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u7bnn"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30h80"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_ey1u7"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_30h80")
+text = "\"NECESSARY MATERIALS: \"
+\"NEAR MATERIALS: \"
+\"IS ALL REQUIRED MATERIAL NEAR: \""
+
+[sub_resource type="Animation" id="Animation_hgipv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D/SubViewport/ProgressBar:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D/SubViewport/ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(704, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D/SubViewport/ProgressBar:tint_under")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.027451)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Meshes:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f88p6"]
+resource_name = "fade_in"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D/SubViewport/ProgressBar:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(704, 1000), Vector2(704, 0), Vector2(704, -28.71), Vector2(704, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D/SubViewport/ProgressBar:tint_under")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.027451), Color(1, 1, 1, 0.027451), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"hide_sprite"
+}, {
+"args": [],
+"method": &"show_sprite"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_f8kwl"]
+resource_name = "flash_green"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D/SubViewport/ProgressBar:tint_over")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.79671, 1.1, 1.23333, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.670588, 0.968627, 0.482353, 0), Color(0.670588, 0.968627, 0.482353, 0), Color(0.670588, 0.968627, 0.482353, 1), Color(0.670588, 0.968627, 0.482353, 1), Color(0.670588, 0.968627, 0.482353, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dm20f"]
+resource_name = "flash_red"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D/SubViewport/ProgressBar:tint_over")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fbbr2"]
+resource_name = "is_used"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"is_used"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rij4l"]
+_data = {
+&"RESET": SubResource("Animation_hgipv"),
+&"fade_in": SubResource("Animation_f88p6"),
+&"flash_green": SubResource("Animation_f8kwl"),
+&"flash_red": SubResource("Animation_dm20f"),
+&"is_used": SubResource("Animation_fbbr2")
+}
+
+[node name="BlueprintMesh" type="RigidBody3D" node_paths=PackedStringArray("spawn_location") groups=["material"]]
+collision_layer = 3
+gravity_scale = 0.5
+script = ExtResource("1_w7c6h")
+spawn_location = NodePath("SpawnLocation")
+necessary_materials = Array[String](["Wood"])
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="outline" type="MeshInstance3D" parent="Meshes"]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("ArrayMesh_l63j0")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_tiglk")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 5
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_lhe0o")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.2, 0)
+billboard = 2
+texture = SubResource("ViewportTexture_u7bnn")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_right = 256.0
+offset_bottom = 512.0
+grow_horizontal = 2
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("2_37m87")
+texture_over = ExtResource("3_ngctx")
+texture_progress = ExtResource("3_ngctx")
+tint_under = Color(1, 1, 1, 0.027451)
+tint_over = Color(1, 0, 0, 0)
+tint_progress = Color(0.670685, 0.967811, 0.483299, 1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
+mesh = SubResource("TextMesh_ey1u7")
+
+[node name="anim_player_fade" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_rij4l")
+}
+
+[node name="anim_player_flash" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_rij4l")
+}
+
+[node name="SpawnLocation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

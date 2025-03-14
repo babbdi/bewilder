@@ -1,0 +1,23 @@
+~ start
+set Dialogo.is_in_interaction = true
+do chatting(true)
+Melbourne: [set is_talking = true][[Oi|Olá|Eai]], eu sou Melbourne, o ferreiro![set is_talking = false]
+Melbourne: [set is_talking = true] Como eu posso te ajudar?. [set is_talking = false]
+- Você está precisando de alguma coisa?
+	Melbourne: [set is_talking = true] Bom[speed=0.2]...[speed=1] alguns monstros de olhos brilhantes estão aparecendo bastante nas redondezas ultimamente. Eles até agora não fizeram nada pra mim mas isso assusta a clientela. Se você pudesse dar uma investigada no que ta acontecendo eu poderia te recompensar com alguma coisa! [set is_talking = false]
+	- Eu posso dar uma olhadinha nisso
+		Melbourne: Obrigado!
+	- Eu não acho que posso por agora
+		Melbourne: Ah, tudo bem
+
+- Nadica de nada
+	Melbourne: Okay!
+	=> end
+#- Start again => start
+#- End the conversation => END
+=> end
+~ end
+set Dialogo.is_in_interaction = false
+set is_talking = false
+do chatting(false)
+=> END

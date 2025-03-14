@@ -1,0 +1,366 @@
+[gd_scene load_steps=21 format=3 uid="uid://c17xncs8fg6k6"]
+
+[ext_resource type="Script" uid="uid://bb0t1m8jix5c1" path="res://turrets/blueprints/blueprint_machine/blueprint_machine.gd" id="1_7crru"]
+[ext_resource type="Script" uid="uid://c6gdsctpbt8o7" path="res://turrets/blueprints/blueprint_machine/blueprint_machine_slot.gd" id="2_g56e4"]
+[ext_resource type="Texture2D" uid="uid://ciucnp3i5xgrc" path="res://icon.svg" id="3_xl22h"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_egtll"]
+viewport_path = NodePath("Interface/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkr52"]
+albedo_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vv0g0"]
+material = SubResource("StandardMaterial3D_kkr52")
+top_radius = 0.7
+bottom_radius = 0.7
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovmuv"]
+albedo_color = Color(0.679158, 0, 0.00105098, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i72qg"]
+material = SubResource("StandardMaterial3D_ovmuv")
+height = 0.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_puk0a"]
+height = 0.8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g87bx"]
+height = 0.4
+radius = 0.7
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x81oy"]
+material = SubResource("StandardMaterial3D_ovmuv")
+height = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kr87j"]
+material = SubResource("StandardMaterial3D_ovmuv")
+height = 0.3
+
+[sub_resource type="Animation" id="Animation_otdic"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button_base_left/button_left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("button_base_right/button_right:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("button_base_confirm/button_confirm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rt2aw"]
+resource_name = "button_confirm_press"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button_base_confirm/button_confirm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0), Vector3(0, 0.1, 0), Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nisgi"]
+resource_name = "button_left_press"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button_base_left/button_left:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0), Vector3(0, 0.1, 0), Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x8c6t"]
+resource_name = "button_right_press"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button_base_right/button_right:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.3, 0), Vector3(0, 0.1, 0), Vector3(0, 0.3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_px415"]
+_data = {
+&"RESET": SubResource("Animation_otdic"),
+&"button_confirm_press": SubResource("Animation_rt2aw"),
+&"button_left_press": SubResource("Animation_nisgi"),
+&"button_right_press": SubResource("Animation_x8c6t")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rdyv"]
+albedo_color = Color(0.807142, 0.648526, 0.759564, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2soi0"]
+material = SubResource("StandardMaterial3D_6rdyv")
+size = Vector3(4, 4, 7)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i0ogi"]
+data = PackedVector3Array(-2, 2, 3.5, 2, 2, 3.5, -2, -2, 3.5, 2, 2, 3.5, 2, -2, 3.5, -2, -2, 3.5, 2, 2, -3.5, -2, 2, -3.5, 2, -2, -3.5, -2, 2, -3.5, -2, -2, -3.5, 2, -2, -3.5, 2, 2, 3.5, 2, 2, -3.5, 2, -2, 3.5, 2, 2, -3.5, 2, -2, -3.5, 2, -2, 3.5, -2, 2, -3.5, -2, 2, 3.5, -2, -2, -3.5, -2, 2, 3.5, -2, -2, 3.5, -2, -2, -3.5, 2, 2, 3.5, -2, 2, 3.5, 2, 2, -3.5, -2, 2, 3.5, -2, 2, -3.5, 2, 2, -3.5, -2, -2, 3.5, 2, -2, 3.5, -2, -2, -3.5, 2, -2, 3.5, 2, -2, -3.5, -2, -2, -3.5)
+
+[node name="blueprint_machine" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_7crru")
+
+[node name="Interface" type="Sprite3D" parent="."]
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 2.01, 1.5, 1.3)
+texture = SubResource("ViewportTexture_egtll")
+
+[node name="SubViewport" type="SubViewport" parent="Interface"]
+size = Vector2i(325, 200)
+
+[node name="left_slot" type="Panel" parent="Interface/SubViewport" node_paths=PackedStringArray("label")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.17
+offset_top = -65.0
+offset_right = -222.17
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("2_g56e4")
+label = NodePath("CenterContainer/Label")
+
+[node name="icon" type="TextureRect" parent="Interface/SubViewport/left_slot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xl22h")
+
+[node name="CenterContainer" type="CenterContainer" parent="Interface/SubViewport/left_slot"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 106.0
+offset_bottom = 168.0
+
+[node name="Label" type="Label" parent="Interface/SubViewport/left_slot/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "text"
+uppercase = true
+
+[node name="middle_slot" type="Panel" parent="Interface/SubViewport" node_paths=PackedStringArray("label")]
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.09
+offset_top = -65.0
+offset_right = -60.09
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("2_g56e4")
+label = NodePath("CenterContainer/Label")
+
+[node name="icon" type="TextureRect" parent="Interface/SubViewport/middle_slot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xl22h")
+
+[node name="CenterContainer" type="CenterContainer" parent="Interface/SubViewport/middle_slot"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 106.0
+offset_bottom = 168.0
+
+[node name="Label" type="Label" parent="Interface/SubViewport/middle_slot/CenterContainer"]
+layout_mode = 2
+text = "text"
+uppercase = true
+
+[node name="right_slot" type="Panel" parent="Interface/SubViewport" node_paths=PackedStringArray("label")]
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 101.125
+offset_top = -65.0
+offset_right = 101.125
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("2_g56e4")
+label = NodePath("CenterContainer/Label")
+
+[node name="icon" type="TextureRect" parent="Interface/SubViewport/right_slot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xl22h")
+
+[node name="CenterContainer" type="CenterContainer" parent="Interface/SubViewport/right_slot"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 106.0
+offset_bottom = 168.0
+
+[node name="Label" type="Label" parent="Interface/SubViewport/right_slot/CenterContainer"]
+layout_mode = 2
+text = "text"
+uppercase = true
+
+[node name="button_base_left" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, -0.3, 2.3)
+mesh = SubResource("CylinderMesh_vv0g0")
+skeleton = NodePath("button_left")
+
+[node name="button_left" type="MeshInstance3D" parent="button_base_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_i72qg")
+skeleton = NodePath("../..")
+
+[node name="left_area" type="Area3D" parent="button_base_left/button_left"]
+
+[node name="left_collision" type="CollisionShape3D" parent="button_base_left/button_left/left_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("CylinderShape3D_puk0a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="button_base_left/button_left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button_base_left/button_left/StaticBody3D"]
+shape = SubResource("CylinderShape3D_g87bx")
+
+[node name="button_base_right" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, -0.3, 0.4)
+mesh = SubResource("CylinderMesh_vv0g0")
+skeleton = NodePath("../button_base_left/button_left")
+
+[node name="button_right" type="MeshInstance3D" parent="button_base_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_x81oy")
+skeleton = NodePath("../..")
+
+[node name="right_area" type="Area3D" parent="button_base_right/button_right"]
+
+[node name="right_collision" type="CollisionShape3D" parent="button_base_right/button_right/right_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("CylinderShape3D_puk0a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="button_base_right/button_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button_base_right/button_right/StaticBody3D"]
+shape = SubResource("CylinderShape3D_g87bx")
+
+[node name="button_base_confirm" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, -0.3, -2.6)
+mesh = SubResource("CylinderMesh_vv0g0")
+skeleton = NodePath("../button_base_left/button_left")
+
+[node name="button_confirm" type="MeshInstance3D" parent="button_base_confirm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_kr87j")
+skeleton = NodePath("../..")
+
+[node name="confirm_area" type="Area3D" parent="button_base_confirm/button_confirm"]
+
+[node name="confirm_collision" type="CollisionShape3D" parent="button_base_confirm/button_confirm/confirm_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("CylinderShape3D_puk0a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="button_base_confirm/button_confirm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button_base_confirm/button_confirm/StaticBody3D"]
+shape = SubResource("CylinderShape3D_g87bx")
+
+[node name="spawner_blueprint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2, -5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_px415")
+}
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_2soi0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("ConcavePolygonShape3D_i0ogi")
+
+[connection signal="body_entered" from="button_base_left/button_left/left_area" to="." method="_on_left_area_body_entered"]
+[connection signal="body_entered" from="button_base_right/button_right/right_area" to="." method="_on_right_area_body_entered"]
+[connection signal="body_entered" from="button_base_confirm/button_confirm/confirm_area" to="." method="_on_confirm_area_body_entered"]

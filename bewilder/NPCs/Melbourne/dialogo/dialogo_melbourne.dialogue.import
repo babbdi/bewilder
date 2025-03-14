@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://5u1ykmov1dgt"
+path="res://.godot/imported/dialogo_melbourne.dialogue-f2dcbf1734589c10a55f569d8f96f65e.tres"
+
+[deps]
+
+source_file="res://NPCs/Melbourne/dialogo/dialogo_melbourne.dialogue"
+dest_files=["res://.godot/imported/dialogo_melbourne.dialogue-f2dcbf1734589c10a55f569d8f96f65e.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cn7fitfoglk70"]
+
+[ext_resource type="Shader" path="res://turrets/hud/turret_ballista.gdshader" id="1_ar0k7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ar0k7")
+shader_parameter/outline_color = null
+shader_parameter/outline_width = 6.745
+shader_parameter/constant_width = true

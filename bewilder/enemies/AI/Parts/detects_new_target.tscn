@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://beturb3nh7xk4"]
+
+[ext_resource type="Script" uid="uid://dch7xdg1prk3c" path="res://enemies/AI/Parts/detects_new_target.gd" id="1_xt4m7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7oisi"]
+radius = 6.54675
+
+[node name="Detects_New_Target" type="Area3D"]
+script = ExtResource("1_xt4m7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7oisi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

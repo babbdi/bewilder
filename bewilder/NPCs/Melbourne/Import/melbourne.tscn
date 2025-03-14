@@ -1,0 +1,172 @@
+[gd_scene load_steps=8 format=3 uid="uid://t4fjr7k1kld8"]
+
+[ext_resource type="PackedScene" uid="uid://ncwdsvx8q2jg" path="res://NPCs/Melbourne/Import/mel.blend" id="1_cjyqp"]
+[ext_resource type="Texture2D" uid="uid://blwj6amipvyt0" path="res://NPCs/Melbourne/Import/mel_material.png" id="2_ienkf"]
+[ext_resource type="Script" uid="uid://bw57lam71k4nc" path="res://addons/wigglebone/wiggle_rotation_modifier_3d.gd" id="3_wx16e"]
+[ext_resource type="Script" uid="uid://doiljl6jqu0bg" path="res://addons/wigglebone/wiggle_rotation_properties_3d.gd" id="4_rqmer"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwgab"]
+albedo_texture = ExtResource("2_ienkf")
+
+[sub_resource type="Resource" id="Resource_iks50"]
+script = ExtResource("4_rqmer")
+spring_freq = 3.0
+angular_damp = 5.0
+force_scale = 180.0
+linear_scale = 360.0
+swing_span = 1.0472
+gravity = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://doiljl6jqu0bg"
+
+[sub_resource type="Resource" id="Resource_1thhf"]
+script = ExtResource("4_rqmer")
+spring_freq = 3.19
+angular_damp = 5.0
+force_scale = 1357.91
+linear_scale = 948.957
+swing_span = 2.29999
+gravity = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://doiljl6jqu0bg"
+
+[node name="mel" instance=ExtResource("1_cjyqp")]
+
+[node name="Skeleton3D" parent="blacksmith" index="0"]
+bones/3/rotation = Quaternion(9.31323e-10, 2.48519e-10, -9.79092e-11, 1)
+bones/4/rotation = Quaternion(-7.41888e-10, -1.61559e-26, -9.04471e-11, 1)
+bones/5/position = Vector3(0.346723, 1.51142, 1.58144)
+bones/5/rotation = Quaternion(0.443284, 0.550908, -0.550908, 0.443284)
+bones/6/position = Vector3(0.129143, 0.640891, 1.74952)
+bones/6/rotation = Quaternion(0.443284, 0.550908, -0.550907, 0.443284)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(-0.395783, 1.51142, 1.58144)
+bones/7/rotation = Quaternion(0.443284, -0.550908, 0.550908, 0.443284)
+bones/8/position = Vector3(-0.129144, 0.640891, 1.74952)
+bones/8/rotation = Quaternion(-0.443284, 0.550908, -0.550908, -0.443284)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(2.70397e-07, 1.0032e-07, -0.707107, 0.707107)
+bones/11/rotation = Quaternion(-0.00126162, 0.0473935, 0.0394476, 0.998096)
+bones/12/rotation = Quaternion(0.00358665, -1.17267e-07, 3.44032e-09, 0.999994)
+bones/14/rotation = Quaternion(0.478436, 2.53758e-09, 4.74657e-07, 0.878122)
+bones/17/rotation = Quaternion(0.222603, -1.34418e-10, 2.22348e-07, 0.974909)
+bones/20/rotation = Quaternion(0.00480125, 4.44686e-10, 3.13917e-09, 0.999988)
+bones/23/rotation = Quaternion(-0.234268, -1.12626e-09, -2.32366e-07, 0.972172)
+bones/26/rotation = Quaternion(-0.535268, -1.48969e-07, -4.38366e-07, 0.844682)
+bones/27/rotation = Quaternion(1.42467e-07, -3.12544e-07, 0.707107, 0.707107)
+bones/28/rotation = Quaternion(0.000785129, -0.0415604, -0.0416846, 0.998266)
+bones/29/rotation = Quaternion(0.00115975, -1.39356e-09, -4.23357e-09, 0.999999)
+bones/30/rotation = Quaternion(-0.0118112, 2.36728e-07, 1.82252e-08, 0.99993)
+bones/32/rotation = Quaternion(0.478436, 2.41374e-10, -4.77385e-07, 0.878123)
+bones/33/rotation = Quaternion(-0.000204227, 2.39362e-09, -1.16468e-09, 1)
+bones/35/rotation = Quaternion(0.222603, 8.35619e-10, -2.2483e-07, 0.974909)
+bones/36/rotation = Quaternion(-0.000134927, 3.1576e-09, -4.47927e-10, 1)
+bones/38/rotation = Quaternion(0.00480127, 1.68585e-09, -4.37316e-09, 0.999988)
+bones/39/rotation = Quaternion(-0.0179051, 2.09547e-10, 1.98048e-08, 0.99984)
+bones/41/rotation = Quaternion(-0.234267, 1.91067e-09, 2.32266e-07, 0.972172)
+bones/42/rotation = Quaternion(-2.35171e-05, -2.53197e-09, -7.91392e-10, 1)
+bones/44/rotation = Quaternion(-0.535268, 1.47933e-07, 4.38471e-07, 0.844682)
+bones/45/scale = Vector3(1, 1, 1.00001)
+bones/46/rotation = Quaternion(0.706312, 0.0385698, 0.705833, 0.0378916)
+bones/46/scale = Vector3(1, 1, 1.0001)
+bones/47/rotation = Quaternion(-0.000480364, 0.000360956, 0.0437574, 0.999042)
+bones/49/rotation = Quaternion(0.706313, -0.0385746, -0.705832, 0.0378951)
+bones/49/scale = Vector3(1, 1, 1.0001)
+bones/50/rotation = Quaternion(-0.000481344, -0.00036099, -0.043767, 0.999042)
+bones/52/position = Vector3(0.456739, 0.137349, 0.111007)
+bones/54/position = Vector3(-0.40768, 0.137349, 0.111007)
+bones/56/position = Vector3(3.31425, 5.02037, 0.0147273)
+bones/59/position = Vector3(-3.26519, 5.02037, 0.0147273)
+
+[node name="apron" parent="blacksmith/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_nwgab")
+
+[node name="bigode_l" type="SkeletonModifier3D" parent="blacksmith/Skeleton3D" index="15"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(-0.213997, 0.976834, 8.9386e-07, 8.91718e-07, 1.01273e-06, -1, -0.976834, -0.213997, -1.18875e-06, 0.153673, 6.41098, 1.74952)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_wx16e")
+bone_name = "bigode_l"
+properties = SubResource("Resource_iks50")
+metadata/_custom_type_script = "uid://bw57lam71k4nc"
+
+[node name="bigode_r" type="SkeletonModifier3D" parent="blacksmith/Skeleton3D" index="16"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(-0.213997, -0.976834, -2.09337e-10, 2.36686e-09, -4.81638e-10, -1, 0.976834, -0.213997, 3.34642e-09, -0.104614, 6.41098, 1.74952)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_wx16e")
+bone_name = "bigode_r"
+properties = SubResource("Resource_1thhf")
+metadata/_custom_type_script = "uid://bw57lam71k4nc"
+
+[node name="front_bang2" type="SkeletonModifier3D" parent="blacksmith/Skeleton3D" index="17"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, -1.39664e-10, 3.0016e-07, 2.22854e-07, -0.670196, -0.742184, 2.0127e-07, 0.742184, -0.670196, 0.0245297, 8.72404, 0.946022)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_wx16e")
+bone_name = "front_bang_2"
+properties = SubResource("Resource_1thhf")
+metadata/_custom_type_script = "uid://bw57lam71k4nc"
+
+[node name="apron2" type="SkeletonModifier3D" parent="blacksmith/Skeleton3D" index="18"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, -2.3856e-09, 3.48004e-07, 1.83598e-08, -0.99825, -0.0591435, 3.47532e-07, 0.0591435, -0.99825, -0.0115783, 3.01551, 0.823226)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("3_wx16e")
+bone_name = "apron_2"
+properties = SubResource("Resource_1thhf")
+metadata/_custom_type_script = "uid://bw57lam71k4nc"

@@ -1,0 +1,392 @@
+[gd_scene load_steps=32 format=3 uid="uid://cfff1p1e7kp2d"]
+
+[ext_resource type="PackedScene" uid="uid://b3r3i1oo3ksg4" path="res://level/zones/kill_plane_3d.tscn" id="1_6ympx"]
+[ext_resource type="Texture2D" uid="uid://bh8rxw3cfwn22" path="res://level/debug_texture/gridOrange.png" id="1_hfysl"]
+[ext_resource type="Script" path="res://TRALHA/level_1.gd" id="1_q4q55"]
+[ext_resource type="Shader" path="res://level/sky_shader.gdshader" id="1_yf0mm"]
+[ext_resource type="Script" path="res://materials/tree_material.gd" id="4_ocr08"]
+[ext_resource type="Script" path="res://TRALHA/path_3d.gd" id="5_eqku0"]
+[ext_resource type="PackedScene" uid="uid://dpelys381rgd" path="res://materials/tree_material.tscn" id="5_xvnlf"]
+[ext_resource type="PackedScene" uid="uid://bp7tdeeauw2xo" path="res://TRALHA/path_follow_3d.tscn" id="6_a6qle"]
+[ext_resource type="PackedScene" uid="uid://c05fqg8pemnaq" path="res://materials/resource_material.tscn" id="6_stru8"]
+[ext_resource type="PackedScene" uid="uid://cuc7n11eihb6a" path="res://turrets/turret_default/default_turret.tscn" id="10_y88h4"]
+
+[sub_resource type="Curve" id="Curve_2shdw"]
+_data = [Vector2(0.160494, 0), 0.0, 0.0, 0, 0, Vector2(0.337449, 0.197802), 0.0, 0.0, 0, 0, Vector2(0.596708, 0.989011), 1.06813, 0.0, 0, 0, Vector2(0.823045, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_cdley"]
+curve = SubResource("Curve_2shdw")
+
+[sub_resource type="Gradient" id="Gradient_61e6j"]
+offsets = PackedFloat32Array(0.865116, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_15vcf"]
+noise_type = 0
+frequency = 0.3589
+offset = Vector3(805.19, 0, 0)
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tgc18"]
+width = 1024
+height = 1024
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_61e6j")
+noise = SubResource("FastNoiseLite_15vcf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ma2ny"]
+shader = ExtResource("1_yf0mm")
+shader_parameter/top_color = Color(0.290196, 0.184314, 1, 1)
+shader_parameter/bottom_color = Color(0.978079, 0.624749, 0.235624, 1)
+shader_parameter/moon_direction = Vector3(-1, 0.68, 1)
+shader_parameter/moon_size = 0.045
+shader_parameter/gradient_curve = SubResource("CurveTexture_cdley")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_tgc18")
+
+[sub_resource type="Sky" id="Sky_ov0lo"]
+sky_material = SubResource("ShaderMaterial_ma2ny")
+
+[sub_resource type="Environment" id="Environment_xvrm1"]
+background_mode = 2
+sky = SubResource("Sky_ov0lo")
+ambient_light_source = 3
+ambient_light_color = Color(0.585062, 0.585062, 0.585062, 1)
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 2
+tonemap_exposure = 1.05
+tonemap_white = 0.95
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 1.4
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(1, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnx26"]
+albedo_texture = ExtResource("1_hfysl")
+uv1_scale = Vector3(75, 75, 75)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u8ycv"]
+material = SubResource("StandardMaterial3D_tnx26")
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bwmjr"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p2iss"]
+size = Vector2(2, 35)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ipj3h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ap2eg"]
+
+[sub_resource type="Curve3D" id="Curve3D_3epfj"]
+_data = {
+"points": PackedVector3Array(0.830395, 0, -13.1018, -0.830395, 0, 13.1018, -7.89823, 3.8147e-06, -44.9225, -0.470839, 0, -1.03134, 0.470839, 0, 1.03134, -8, 0.312382, -12, 0, 0, 0.276797, 0, 0, -0.276797, 24.8562, 3.8147e-06, -11.6145, 1.47626, 0, 0.830391, -1.47626, 0, -0.830391, 24.4871, 3.8147e-06, -45.0148, 13.4708, 0, -0.922657, -13.4708, 0, 0.922657, -7.89823, 3.8147e-06, -44.9225),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="GDScript" id="GDScript_kqxv7"]
+resource_local_to_scene = true
+script/source = "extends Resource
+
+@export var name : String
+@export var model : PackedScene
+
+@export var shoot_sound : AudioStream
+@export var reload_sound : AudioStream
+
+
+var ray_cast
+
+#Rotação 
+@export_group(\"Rotation\")
+# movement rates in degrees
+@export var elevation_speed_deg: float = 5.0
+@export var rotation_speed_deg: float = 5.0
+# elevation constraints in degrees
+@export var min_elevation_deg: float = 0.0
+@export var max_elevation_deg: float = 60.0
+
+### Weapon Logic
+@export_group(\"Weapon Logic\")
+@export var damage : int = 10
+@export var knockbackForce : int = 5
+
+@export var current_ammo := INF
+@export var magazine_capacity := INF
+@export var reserve_ammo := INF
+@export var max_reserve_ammo := INF
+
+@export var auto_fire : bool = false
+@export var max_fire_rate_ms : float = 50
+
+const RAYCAST_DIST : float = 9999
+"
+
+[sub_resource type="Resource" id="Resource_5q21y"]
+resource_local_to_scene = true
+script = SubResource("GDScript_kqxv7")
+name = ""
+elevation_speed_deg = 50.0
+rotation_speed_deg = 50.0
+min_elevation_deg = 0.0
+max_elevation_deg = 60.0
+damage = 10
+knockbackForce = 5
+current_ammo = inf
+magazine_capacity = inf
+reserve_ammo = inf
+max_reserve_ammo = inf
+auto_fire = false
+max_fire_rate_ms = 50.0
+
+[sub_resource type="GDScript" id="GDScript_jp1y3"]
+resource_local_to_scene = true
+script/source = "class_name turret_resource extends Resource
+
+@export var name : String
+@export var model : PackedScene
+
+@export var shoot_sound : AudioStream
+@export var reload_sound : AudioStream
+
+
+var ray_cast
+
+#Rotação 
+@export_group(\"Rotation\")
+# movement rates in degrees
+@export var elevation_speed_deg: float = 5.0
+@export var rotation_speed_deg: float = 5.0
+# elevation constraints in degrees
+@export var min_elevation_deg: float = 0.0
+@export var max_elevation_deg: float = 60.0
+
+### Weapon Logic
+@export_group(\"Weapon Logic\")
+@export var damage : int = 10
+@export var knockbackForce : int = 5
+
+@export var current_ammo := INF
+@export var magazine_capacity := INF
+@export var reserve_ammo := INF
+@export var max_reserve_ammo := INF
+
+@export var auto_fire : bool = false
+@export var max_fire_rate_ms : float = 50
+
+const RAYCAST_DIST : float = 9999
+"
+
+[sub_resource type="Resource" id="Resource_vogd4"]
+resource_local_to_scene = true
+script = SubResource("GDScript_jp1y3")
+name = ""
+model = null
+shoot_sound = null
+reload_sound = null
+elevation_speed_deg = 50.0
+rotation_speed_deg = 50.0
+min_elevation_deg = 0.0
+max_elevation_deg = 60.0
+damage = 10
+knockbackForce = 5
+current_ammo = inf
+magazine_capacity = inf
+reserve_ammo = inf
+max_reserve_ammo = inf
+auto_fire = false
+max_fire_rate_ms = 50.0
+
+[sub_resource type="GDScript" id="GDScript_2vrun"]
+resource_local_to_scene = true
+script/source = "class_name turret_resource extends Resource
+
+@export var name : String
+@export var model : PackedScene
+
+@export var shoot_sound : AudioStream
+@export var reload_sound : AudioStream
+
+
+var ray_cast
+
+#Rotação 
+@export_group(\"Rotation\")
+# movement rates in degrees
+@export var elevation_speed_deg: float = 5.0
+@export var rotation_speed_deg: float = 5.0
+# elevation constraints in degrees
+@export var min_elevation_deg: float = 0.0
+@export var max_elevation_deg: float = 60.0
+
+### Weapon Logic
+@export_group(\"Weapon Logic\")
+@export var damage : int = 10
+@export var knockbackForce : int = 5
+
+@export var current_ammo := INF
+@export var magazine_capacity := INF
+@export var reserve_ammo := INF
+@export var max_reserve_ammo := INF
+
+@export var auto_fire : bool = false
+@export var max_fire_rate_ms : float = 50
+
+const RAYCAST_DIST : float = 9999
+"
+
+[sub_resource type="Resource" id="Resource_kmvyp"]
+resource_local_to_scene = true
+script = SubResource("GDScript_2vrun")
+name = ""
+model = null
+shoot_sound = null
+reload_sound = null
+elevation_speed_deg = 50.0
+rotation_speed_deg = 50.0
+min_elevation_deg = 0.0
+max_elevation_deg = 60.0
+damage = 10
+knockbackForce = 5
+current_ammo = inf
+magazine_capacity = inf
+reserve_ammo = inf
+max_reserve_ammo = inf
+auto_fire = false
+max_fire_rate_ms = 50.0
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_q4q55")
+
+[node name="Coisas" type="Node3D" parent="."]
+
+[node name="KillPlane3D" parent="Coisas" instance=ExtResource("1_6ympx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.5007, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Coisas"]
+environment = SubResource("Environment_xvrm1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Coisas"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Coisas"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Coisas/StaticBody3D"]
+mesh = SubResource("PlaneMesh_u8ycv")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Coisas/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_bwmjr")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Coisas"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.93537, 0, 1.3701)
+use_collision = true
+polygon = PackedVector2Array(-5, 0, 1, 1, 1, 1, 5, 0, -3.46545, -0.0888958)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Coisas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -2)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Coisas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.5, -2)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Coisas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3.5, 5)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Coisas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 5)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Coisas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.0620546, -28.151)
+mesh = SubResource("PlaneMesh_p2iss")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Coisas"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.45884, 0.0620546, -45.151)
+mesh = SubResource("PlaneMesh_p2iss")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Coisas"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.9064, 0.0620546, -28.151)
+mesh = SubResource("PlaneMesh_p2iss")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Coisas"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 8.71801, 0.0620546, -11.5857)
+mesh = SubResource("PlaneMesh_p2iss")
+
+[node name="Area3D" parent="Coisas" instance=ExtResource("5_xvnlf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.47003, -8.63316)
+material = ExtResource("6_stru8")
+
+[node name="Area3D2" type="Area3D" parent="Coisas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9192, 4.47556, -28.639)
+script = ExtResource("4_ocr08")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Coisas/Area3D2"]
+shape = SubResource("CapsuleShape3D_ipj3h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Coisas/Area3D2/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_ap2eg")
+
+[node name="ResourceMesh" parent="Coisas" instance=ExtResource("6_stru8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4863, 1, -10.436)
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.143674, 0)
+curve = SubResource("Curve3D_3epfj")
+script = ExtResource("5_eqku0")
+
+[node name="Timer" type="Timer" parent="Path3D"]
+wait_time = 5.0
+autostart = true
+
+[node name="PathFollow3D" parent="Path3D" instance=ExtResource("6_a6qle")]
+unique_name_in_owner = true
+transform = Transform3D(-0.997996, 0, 0.0632532, 0, 1, 0, -0.0632532, 0, -0.997997, -7.89823, 3.8147e-06, -44.9225)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.258819, 0.965926, -1.13133e-08, 0.965926, -0.258819, -4.2222e-08, -14, -0.854755, -27.4925)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.258819, 0.965926, -1.13133e-08, 0.965926, -0.258819, -4.2222e-08, -14, 1.9229, -20.9898)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.258819, 0.965926, -1.13133e-08, 0.965926, -0.258819, -4.2222e-08, -21, 2.88883, -21.2487)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0.258819, 0.965926, -1.13133e-08, 0.965926, -0.258819, -4.2222e-08, -21, 2.04302, -28.269)
+use_collision = true
+size = Vector3(5, 3, 5)
+
+[node name="turret" parent="." instance=ExtResource("10_y88h4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.69339, 0, -40.8197)
+resource = SubResource("Resource_5q21y")
+
+[node name="turret2" parent="." instance=ExtResource("10_y88h4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3222, 0, -34.7292)
+resource = SubResource("Resource_vogd4")
+
+[node name="turret3" parent="." instance=ExtResource("10_y88h4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48031, 0, -31.8021)
+resource = SubResource("Resource_kmvyp")
+
+[connection signal="body_entered" from="Coisas/Area3D2" to="Coisas/Area3D2" method="_on_body_entered"]
+[connection signal="timeout" from="Path3D/Timer" to="Path3D" method="_on_timer_timeout"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhy3cyp8rvdg7"]
+
+[ext_resource type="PackedScene" uid="uid://t4fjr7k1kld8" path="res://NPCs/Melbourne/Import/melbourne.tscn" id="1_q2ubh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twm35"]
+animation = &"look_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_njllb"]
+animation = &"look_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q2ubh"]
+animation = &"Talking01"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ohvy2"]
+animation = &"Idle01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_njllb"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_835e5"]
+states/Idle01/node = SubResource("AnimationNodeAnimation_ohvy2")
+states/Idle01/position = Vector2(465, 100)
+states/Start/position = Vector2(278, 100)
+transitions = ["Start", "Idle01", SubResource("AnimationNodeStateMachineTransition_njllb")]
+graph_offset = Vector2(-197, -26)
+
+[sub_resource type="AnimationNodeAdd3" id="AnimationNodeAdd3_nf6sn"]
+filter_enabled = true
+filters = ["blacksmith/Skeleton3D:head"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_twm35"]
+filter_enabled = true
+filters = ["blacksmith/Skeleton3D:bigode_l", "blacksmith/Skeleton3D:bigode_r"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_njllb"]
+graph_offset = Vector2(14, 175.611)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_q2ubh")
+nodes/Animation/position = Vector2(80, 360)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_twm35")
+"nodes/Animation 2/position" = Vector2(380, 440)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_njllb")
+"nodes/Animation 3/position" = Vector2(380, -20)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_835e5")
+nodes/StateMachine/position = Vector2(0, 160)
+"nodes/blend look/node" = SubResource("AnimationNodeAdd3_nf6sn")
+"nodes/blend look/position" = Vector2(620, 100)
+"nodes/blend talking/node" = SubResource("AnimationNodeBlend2_twm35")
+"nodes/blend talking/position" = Vector2(380, 160)
+nodes/output/position = Vector2(860, 100)
+node_connections = [&"blend look", 0, &"Animation 3", &"blend look", 1, &"blend talking", &"blend look", 2, &"Animation 2", &"blend talking", 0, &"StateMachine", &"blend talking", 1, &"Animation", &"output", 0, &"blend look"]
+
+[node name="MelbourneSkin" type="Node3D"]
+
+[node name="mel" parent="." instance=ExtResource("1_q2ubh")]
+
+[node name="Skeleton3D" parent="mel/blacksmith" index="0"]
+bones/0/position = Vector3(0.0232775, 2.92708, -0.0066348)
+bones/1/scale = Vector3(1.01856, 1.01856, 1.01856)
+bones/2/rotation = Quaternion(-0.00517054, 1.6199e-07, 0.000975582, 0.999986)
+bones/3/rotation = Quaternion(8.5345e-10, 1.12469e-10, -0.0402858, 0.999188)
+bones/3/scale = Vector3(0.981781, 0.981781, 0.981781)
+bones/4/rotation = Quaternion(-0.0166974, 0.0192641, 0.0373771, 0.998976)
+bones/5/position = Vector3(0.343226, 1.53373, 1.57529)
+bones/5/rotation = Quaternion(0.443284, 0.550908, -0.550908, 0.443284)
+bones/6/position = Vector3(0.129129, 0.640411, 1.74953)
+bones/6/rotation = Quaternion(0.443358, 0.550816, -0.550999, 0.443211)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(-0.392286, 1.53373, 1.57529)
+bones/7/rotation = Quaternion(0.443284, -0.550908, 0.550908, 0.443284)
+bones/8/position = Vector3(-0.12913, 0.640412, 1.74953)
+bones/8/rotation = Quaternion(-0.443357, 0.550816, -0.550999, -0.44321)
+bones/8/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(-0.000648554, -0.00114462, -0.710992, 0.703198)
+bones/10/scale = Vector3(0.981779, 0.981779, 0.98178)
+bones/11/rotation = Quaternion(0.00387606, 0.0378745, -0.623285, 0.781067)
+bones/12/rotation = Quaternion(0.172641, -1.18539e-07, 2.02532e-07, 0.984985)
+bones/14/rotation = Quaternion(0.475859, 0.0495865, -0.0910107, 0.873393)
+bones/17/rotation = Quaternion(0.221404, 0.023074, -0.101054, 0.969658)
+bones/20/rotation = Quaternion(0.0047754, 0.0004976, -0.103634, 0.994604)
+bones/23/rotation = Quaternion(-0.233005, -0.0242881, -0.100792, 0.966933)
+bones/26/rotation = Quaternion(-0.532386, -0.0554743, -0.0875416, 0.840134)
+bones/27/rotation = Quaternion(-0.000648684, 0.00114441, 0.710992, 0.703198)
+bones/27/scale = Vector3(0.981779, 0.981779, 0.98178)
+bones/28/rotation = Quaternion(-0.033192, -0.102931, 0.64846, 0.753527)
+bones/29/rotation = Quaternion(0.342728, -3.02768e-09, -5.01751e-07, 0.939435)
+bones/30/rotation = Quaternion(0.00326877, -0.0417097, 0.0125893, 0.999045)
+bones/32/rotation = Quaternion(0.477316, -0.0327103, 0.0600361, 0.876068)
+bones/33/rotation = Quaternion(-0.000203901, 1.18226e-05, 0.0577327, 0.998332)
+bones/35/rotation = Quaternion(0.222082, -0.0152193, 0.066654, 0.972628)
+bones/36/rotation = Quaternion(-0.000134697, 7.78932e-06, 0.057735, 0.998332)
+bones/38/rotation = Quaternion(0.00479001, -0.000328259, 0.0683685, 0.997649)
+bones/39/rotation = Quaternion(-0.0178752, 0.00103369, 0.0577225, 0.998172)
+bones/41/rotation = Quaternion(-0.233719, 0.0160167, 0.0664669, 0.969897)
+bones/42/rotation = Quaternion(-2.34656e-05, 1.36751e-06, 0.057731, 0.998332)
+bones/44/rotation = Quaternion(-0.534016, 0.0366, 0.057757, 0.842705)
+bones/45/scale = Vector3(0.981781, 0.981781, 0.981787)
+bones/46/rotation = Quaternion(0.703706, 0.0724239, 0.703201, 0.071135)
+bones/46/scale = Vector3(1, 0.999999, 1.0001)
+bones/47/rotation = Quaternion(-0.00119076, 0.000359167, 0.108467, 0.994099)
+bones/49/rotation = Quaternion(0.703707, -0.0724268, -0.7032, 0.0711355)
+bones/49/scale = Vector3(1, 1, 1.0001)
+bones/50/rotation = Quaternion(-0.00119297, -0.0003592, -0.108471, 0.994099)
+bones/52/position = Vector3(0.456739, 0.122827, 0.154571)
+bones/54/position = Vector3(-0.40768, 0.122827, 0.154571)
+bones/56/position = Vector3(1.24857, 2.37938, 0.454607)
+bones/57/position = Vector3(0.468287, 5.09163, 3.46988)
+bones/58/position = Vector3(-0.419228, 5.09163, 3.46988)
+bones/59/position = Vector3(-1.07452, 2.86946, 0.23874)
+
+[node name="bigode_l" parent="mel/blacksmith/Skeleton3D" index="15"]
+transform = Transform3D(-0.25282, 0.967498, -0.00548087, -0.0295796, -0.0133916, -0.999473, -0.967061, -0.252525, 0.0320038, 0.303276, 6.45638, 1.7218)
+
+[node name="bigode_r" parent="mel/blacksmith/Skeleton3D" index="16"]
+transform = Transform3D(-0.174827, -0.984588, -0.00483336, 0.0323309, -0.000834348, -0.999477, 0.984068, -0.174892, 0.0319784, 0.0452264, 6.45804, 1.73207)
+
+[node name="front_bang2" parent="mel/blacksmith/Skeleton3D" index="17"]
+transform = Transform3D(0.99919, 0.0261709, -0.0305845, -0.00642728, -0.646326, -0.763035, -0.0397368, 0.762613, -0.645634, 0.154112, 8.74408, 0.850624)
+
+[node name="apron2" parent="mel/blacksmith/Skeleton3D" index="18"]
+transform = Transform3D(1.01856, -2.10997e-09, 3.54471e-07, 1.82661e-08, -1.01677, -0.060241, 3.53975e-07, 0.060241, -1.01677, -0.0122252, 2.97673, 0.838626)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../mel")
+tree_root = SubResource("AnimationNodeBlendTree_njllb")
+anim_player = NodePath("../mel/AnimationPlayer")
+"parameters/blend look/add_amount" = 0.0
+"parameters/blend talking/blend_amount" = 0.0
+
+[editable path="mel"]

@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=4 uid="uid://brgu5bnrwxjvh"]
+
+[ext_resource type="Script" path="res://turrets/blueprints/blueprint.gd" id="1_w7c6h"]
+[ext_resource type="Texture2D" uid="uid://dj6jt5fcebirb" path="res://turrets/blueprints/under_circle.png" id="2_37m87"]
+[ext_resource type="Texture2D" uid="uid://yisvp7gc6lq3" path="res://turrets/blueprints/progress_circle.png" id="3_ngctx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tiglk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6cx8w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrchb"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_l63j0"]
+_surfaces = [{
+"aabb": AABB(-0.540415, -0.540415, -0.540415, 1.08083, 1.08083, 1.08083),
+"attribute_data": PackedByteArray("AAAAAAAAAACrqio/AAAAAKuqqj4AAAAAAACAPwAAAAAAAAAAAAAAP6uqKj8AAAA/q6qqPgAAAD8AAIA/AAAAP6uqqj4AAAAAAAAAAAAAAD+rqio/AAAAAKuqqj4AAAA/q6qqPgAAAD8AAAAAAACAP6uqKj8AAAA/q6qqPgAAgD+rqqo+AAAAP6uqKj8AAAA/q6oqPwAAAD8AAIA/AAAAP6uqqj4AAIA/q6oqPwAAgD+rqio/AACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAAEAAIAAgAEAAYAAQAFAAMAAwAFAAcACAAMAAoACgAMAA4ACQANAAsACwANAA8AEAAUABIAEgAUABYAEQAVABMAEwAVABcA"),
+"material": SubResource("StandardMaterial3D_qrchb"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("m1gKv5tYCj+bWAo/m1gKP5tYCj+bWAq/m1gKP5tYCj+bWAo/m1gKv5tYCj+bWAq/m1gKv5tYCr+bWAo/m1gKP5tYCr+bWAq/m1gKP5tYCr+bWAo/m1gKv5tYCr+bWAq/m1gKP5tYCj+bWAo/m1gKv5tYCj+bWAq/m1gKP5tYCj+bWAq/m1gKv5tYCj+bWAo/m1gKP5tYCr+bWAo/m1gKv5tYCr+bWAq/m1gKP5tYCr+bWAq/m1gKv5tYCr+bWAo/m1gKP5tYCj+bWAo/m1gKv5tYCr+bWAo/m1gKv5tYCj+bWAo/m1gKP5tYCr+bWAo/m1gKP5tYCj+bWAq/m1gKv5tYCr+bWAq/m1gKv5tYCj+bWAq/m1gKP5tYCr+bWAq//3//f////7//////AAD/v/9//3////+//////wAA/7//f/9/////v/////8AAP+//3//f////7//////AAD/v///AID/////AAAAgP9//7///wCA/////wAAAID/f/+///8AgP////8AAACA/3//v///AID/////AAAAgP9//78AgP//AAD/vwCAAAD///+/AID//wAA/78AgAAA////vwCA//8AAP+/AIAAAP///78AgP//AAD/vwCAAAD///+/")
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1b871"]
+radius = 3.10156
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u7bnn"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="BlueprintMesh" type="RigidBody3D" groups=["material"]]
+collision_layer = 3
+script = ExtResource("1_w7c6h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_tiglk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6cx8w")
+
+[node name="outline" type="MeshInstance3D" parent="MeshInstance3D"]
+visible = false
+mesh = SubResource("ArrayMesh_l63j0")
+
+[node name="Area3D" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_1b871")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.8, 0)
+visible = false
+texture = SubResource("ViewportTexture_u7bnn")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_right = 256.0
+offset_bottom = 512.0
+grow_horizontal = 2
+step = 0.1
+fill_mode = 4
+texture_under = ExtResource("2_37m87")
+texture_progress = ExtResource("3_ngctx")
+tint_progress = Color(0.670685, 0.967811, 0.483299, 1)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

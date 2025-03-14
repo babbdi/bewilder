@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djofrha7emrte"]
+
+[ext_resource type="PackedScene" uid="uid://dqv6smf3ikhtv" path="res://turrets/ballista/import/ballistaDart.glb" id="1_2rh0d"]
+
+[node name="ballistaDart" instance=ExtResource("1_2rh0d")]
+
+[node name="spear" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bduybcmyt0owf"]
+
+[ext_resource type="Material" uid="uid://dnvlpeg4no6w3" path="res://includes/outline/outline.tres" id="1_is7ab"]
+[ext_resource type="Shader" path="res://includes/shaders/mossed_rock_01.gdshader" id="2_lkqo5"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_is7ab")
+shader = ExtResource("2_lkqo5")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/ao_light_affect = 0.0
+shader_parameter/color = Color(0.697204, 0.691958, 0.715136, 1)
+shader_parameter/specular = Color(0.3, 0.3, 0.3, 0.584314)
+shader_parameter/fresnel = Color(0.2, 0.2, 0.2, 0.133333)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)

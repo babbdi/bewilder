@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn1tgtqyq16mg"]
+
+[ext_resource type="PackedScene" uid="uid://bf426way3me8n" path="res://turrets/ballista/import/imported_ballista.glb" id="1_vpxf3"]
+
+[node name="imported_ballista" instance=ExtResource("1_vpxf3")]
+
+[node name="Head" type="Node3D" parent="ballista/Skeleton3D" index="0"]

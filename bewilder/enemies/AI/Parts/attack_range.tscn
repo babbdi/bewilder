@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv0sdu4ina636"]
+
+[ext_resource type="Script" uid="uid://dmtgyuvk2i3sv" path="res://enemies/AI/Parts/attack_range.gd" id="1_xe7f3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_d3lnk"]
+height = 1.9
+radius = 0.7
+
+[node name="Attack_Range" type="Area3D"]
+script = ExtResource("1_xe7f3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+shape = SubResource("CylinderShape3D_d3lnk")
+
+[connection signal="body_entered" from="." to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_attack_range_body_exited"]
