@@ -1,8 +1,8 @@
-[gd_scene load_steps=77 format=4 uid="uid://b5o616jnf023j"]
+[gd_scene load_steps=78 format=4 uid="uid://b5o616jnf023j"]
 
 [ext_resource type="Script" uid="uid://dixvkx6oafet" path="res://turrets/turret_class.gd" id="1_f5ujg"]
 [ext_resource type="Script" uid="uid://ddf4er43x4un5" path="res://turrets/turret_base.gd" id="2_1nthg"]
-[ext_resource type="Resource" uid="uid://bu6f3xl40x3hv" path="res://turrets/ballista/ballista_resource.tres" id="2_abfjt"]
+[ext_resource type="Script" uid="uid://cxbtl5rhamnu6" path="res://turrets/turret_resource.gd" id="2_rdbwv"]
 [ext_resource type="Texture2D" uid="uid://cs1v803dg0vpn" path="res://turrets/ballista/import/imported_ballista_base_BaseColor.png-base_Alpha.png" id="4_u6mh4"]
 [ext_resource type="Texture2D" uid="uid://dxtrpjuo7yt4x" path="res://turrets/ballista/import/imported_ballista_base_Emission.png" id="5_h3lyd"]
 [ext_resource type="Texture2D" uid="uid://dkenstsvemtxc" path="res://turrets/ballista/import/imported_ballista_base_Metallic.png-base_Roughness.png" id="6_aro2y"]
@@ -34,6 +34,25 @@
 [ext_resource type="Texture2D" uid="uid://4dwc1vpvx3pi" path="res://turrets/ballista/import/ballistaDart_dart_Metallic-dart_Roughness.png" id="32_d0pxj"]
 [ext_resource type="Texture2D" uid="uid://3xvr0pbey3w0" path="res://turrets/ballista/import/ballistaDart_dart_Normal.png" id="33_4qtye"]
 [ext_resource type="Script" uid="uid://few8nphnlkhm" path="res://turrets/ballista/detection.gd" id="34_rdbwv"]
+
+[sub_resource type="Resource" id="Resource_xwmvl"]
+script = ExtResource("2_rdbwv")
+name = "ballista"
+max_health = 100.0
+elevation_speed_deg = 30.0
+rotation_speed_deg = 30.0
+min_elevation_deg = 0.0
+max_elevation_deg = 60.0
+projectile_damage = 10.0
+projectile_speed = 50.0
+projectile_pen = 5
+projectile_life_time = 30.0
+knockbackForce = 5
+current_ammo = 0.0
+magazine_capacity = 1.0
+one_shot = true
+auto_fire = false
+max_fire_rate_ms = 10000.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rdbwv"]
 radius = 11.0343
@@ -546,7 +565,7 @@ shader_parameter/animation_speed = 0.9
 shader_parameter/animation_intensity = 0.41
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ruje3"]
-size = Vector3(1, 1, 50.4449)
+size = Vector3(1, 1, 44)
 
 [sub_resource type="Animation" id="Animation_priqe"]
 length = 0.001
@@ -862,10 +881,10 @@ tracks/9/path = NodePath("../detection:process_mode")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [4, 0]
 }
 
 [sub_resource type="Animation" id="Animation_otfx3"]
@@ -1012,6 +1031,105 @@ tracks/19/path = NodePath("ballista/Skeleton3D:side_gear")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, -3.79308e-08, -0.707107, 6.88394e-08, 0.707107, 0.0333333, 1, -3.79308e-08, -0.707107, 6.88394e-08, 0.707107, 0.0666667, 1, -0.00952021, -0.707043, 0.00952025, 0.707043, 0.3, 1, -0.0980611, -0.700274, 0.0980611, 0.700274, 0.533333, 1, -0.185055, -0.682462, 0.185056, 0.682462, 0.766667, 1, -0.269131, -0.653887, 0.269132, 0.653887, 1, 1, -0.348963, -0.615, 0.348963, 0.615, 1.26667, 1, -0.433391, -0.558724, 0.433391, 0.558724, 1.53333, 1, -0.508895, -0.490944, 0.508895, 0.490944, 1.8, 1, -0.573921, -0.413055, 0.573921, 0.413055, 2.06667, 1, -0.62713, -0.326662, 0.62713, 0.326662, 2.36667, 1, -0.671511, -0.221524, 0.671511, 0.221524, 2.66667, 1, -0.698401, -0.110616, 0.698401, 0.110616, 2.93333, 1, -0.707043, -0.00952006, 0.707043, 0.00952009, 2.96667, 1, 0.7071, -0.00317358, -0.7071, 0.00317355, 3.26667, 1, 0.69738, -0.11688, -0.69738, 0.11688, 3.56667, 1, 0.669496, -0.227542, -0.669496, 0.227542, 3.83333, 1, 0.630037, -0.32102, -0.630037, 0.32102, 4.1, 1, 0.577605, -0.407887, -0.577605, 0.407887, 4.36667, 1, 0.513281, -0.486356, -0.513281, 0.486356, 4.63333, 1, 0.438388, -0.554811, -0.438388, 0.554811, 4.86667, 1, 0.365395, -0.605381, -0.365395, 0.605381, 5.1, 1, 0.28664, -0.646404, -0.28664, 0.646404, 5.33333, 1, 0.203363, -0.677232, -0.203363, 0.677232, 5.56667, 1, 0.11688, -0.69738, -0.11688, 0.69738, 5.8, 1, 0.0285534, -0.70653, -0.0285534, 0.70653, 5.875, 1, -9.9748e-08, -0.707107, 1.30657e-07, 0.707107)
+
+[sub_resource type="Animation" id="Animation_6jg54"]
+resource_name = "previewing_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ballista/Skeleton3D/base:surface_material_override/0:shader_parameter/dissolveSlider")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/3:shader_parameter/dissolveSlider")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/2:shader_parameter/dissolveSlider")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/1:shader_parameter/dissolveSlider")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ballista/Skeleton3D/base:surface_material_override/3:shader_parameter/dissolveSlider")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ballista/Skeleton3D/base:surface_material_override/2:shader_parameter/dissolveSlider")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.516]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ballista/Skeleton3D/base:surface_material_override/1:shader_parameter/dissolveSlider")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/0:shader_parameter/dissolveSlider")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.516]
+}
 
 [sub_resource type="Animation" id="Animation_rdbwv"]
 resource_name = "heal"
@@ -1188,105 +1306,6 @@ tracks/19/path = NodePath("ballista/Skeleton3D:side_gear")
 tracks/19/interp = 0
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, -3.79308e-08, -0.707107, 6.88394e-08, 0.707107)
-
-[sub_resource type="Animation" id="Animation_6jg54"]
-resource_name = "previewing_fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ballista/Skeleton3D/base:surface_material_override/0:shader_parameter/dissolveSlider")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/3:shader_parameter/dissolveSlider")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/2:shader_parameter/dissolveSlider")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/1:shader_parameter/dissolveSlider")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ballista/Skeleton3D/base:surface_material_override/3:shader_parameter/dissolveSlider")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("ballista/Skeleton3D/base:surface_material_override/2:shader_parameter/dissolveSlider")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.516]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("ballista/Skeleton3D/base:surface_material_override/1:shader_parameter/dissolveSlider")
-tracks/6/interp = 2
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/0:shader_parameter/dissolveSlider")
-tracks/7/interp = 2
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.516]
-}
 
 [sub_resource type="Animation" id="Animation_ado3x"]
 resource_name = "reload"
@@ -1491,6 +1510,20 @@ tracks/24/keys = {
 "update": 0,
 "values": [Vector3(0, 2.2, 1.8), Vector3(0, 2.2, 0.9)]
 }
+tracks/25/type = "method"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("..")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(3.73333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_gc3bl"]
 resource_name = "shoot"
@@ -1646,7 +1679,7 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"spawn_projectile"
+"method": &"shoot"
 }]
 }
 tracks/21/type = "value"
@@ -1688,8 +1721,8 @@ _data = {
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rdbwv"]
-height = 2.23294
-radius = 1.00195
+height = 0.239559
+radius = 0.7
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rdbwv"]
 viewport_path = NodePath("detection/Sprite3D/SubViewport")
@@ -1724,20 +1757,20 @@ cache/0/16/0/scale = 1.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdbwv"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="TextMesh" id="TextMesh_xwmvl"]
+[sub_resource type="TextMesh" id="TextMesh_rdbwv"]
 material = SubResource("StandardMaterial3D_rdbwv")
-text = "CURRENT ANIMATION"
 font = SubResource("FontFile_rdbwv")
 font_size = 31
 vertical_alignment = 0
 uppercase = true
 
-[node name="TurretBallista" type="Node3D" node_paths=PackedStringArray("_turret_base", "projectile_spawn_location", "body", "head", "detection")]
+[node name="TurretBallista" type="Node3D" node_paths=PackedStringArray("_turret_base", "projectile_spawn_location", "anim", "body", "head", "detection")]
 script = ExtResource("1_f5ujg")
-resource = ExtResource("2_abfjt")
+resource = SubResource("Resource_xwmvl")
 projectile_scene = ExtResource("29_ritra")
 _turret_base = NodePath("turret_base")
 projectile_spawn_location = NodePath("imported_ballista/ballista/Skeleton3D/base/Head/ballista_head/projectile_spawn")
+anim = NodePath("imported_ballista/AnimationPlayer")
 body = NodePath("imported_ballista/ballista/Skeleton3D/base")
 head = NodePath("imported_ballista/ballista/Skeleton3D/base/Head")
 detection = NodePath("detection")
@@ -1751,6 +1784,7 @@ anim_player = NodePath("../imported_ballista/AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CheckEnemy"]
 shape = SubResource("SphereShape3D_rdbwv")
+debug_color = Color(1, 1, 1, 0.42)
 
 [node name="outline" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -1782,49 +1816,49 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.703119, -0.709886, 0.0410572, -0.711072, -0.701946, 0.0405983, -2.32831e-07, -0.05774, -0.998332, -1.87619, 0.475056, -0.00331615)
 bones/2/enabled = true
 bones/2/position = Vector3(-1.87619, 0.475056, -0.00331615)
-bones/2/rotation = Quaternion(0.929496, -0.368072, 0.0111143, -0.0208897)
+bones/2/rotation = Quaternion(0.9201, -0.390795, 0.00994547, -0.0244323)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "wood.l.001.l"
 bones/3/parent = 2
 bones/3/rest = Transform3D(0.997373, -0.0716115, 0.0109374, 0.0721836, 0.995163, -0.0666372, -0.00611249, 0.0672516, 0.997717, 2.73443e-07, 1.32929, -1.19209e-06)
 bones/3/enabled = true
 bones/3/position = Vector3(2.73443e-07, 1.32929, -1.19209e-06)
-bones/3/rotation = Quaternion(0.0337149, 0.00532287, 0.0137982, 0.999322)
+bones/3/rotation = Quaternion(0.0341658, 0.00416743, 0.035446, 0.998779)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "wood.l.002.l"
 bones/4/parent = 3
 bones/4/rest = Transform3D(0.980124, 0.19678, -0.0251742, -0.196474, 0.980407, 0.0141237, 0.0274602, -0.00889691, 0.999583, 4.89876e-07, 0.957146, -9.83477e-07)
 bones/4/enabled = true
 bones/4/position = Vector3(4.89876e-07, 0.957146, -9.83477e-07)
-bones/4/rotation = Quaternion(-0.00562233, -0.0127501, -0.127942, 0.991684)
+bones/4/rotation = Quaternion(-0.00505968, -0.0132407, -0.10643, 0.994219)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "wood.l.003.l"
 bones/5/parent = 4
 bones/5/rest = Transform3D(0.974665, 0.222427, -0.0235397, -0.222385, 0.974949, 0.00443162, 0.0239357, 0.000915527, 0.999713, 9.31323e-10, 1.33487, -1.78814e-07)
 bones/5/enabled = true
 bones/5/position = Vector3(9.31323e-10, 1.33487, -1.78814e-07)
-bones/5/rotation = Quaternion(-0.00037811, -0.0112906, -0.137371, 0.990455)
+bones/5/rotation = Quaternion(0.000213776, -0.0117114, -0.12043, 0.992653)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "wood.l.004.l"
 bones/6/parent = 5
 bones/6/rest = Transform3D(0.999053, 0.0123703, 0.0417185, -0.0109539, 0.999361, -0.0340101, -0.0421125, 0.033521, 0.99855, -5.67641e-07, 1.06845, -8.04663e-07)
 bones/6/enabled = true
 bones/6/position = Vector3(-5.67641e-07, 1.06845, -8.04663e-07)
-bones/6/rotation = Quaternion(0.0185294, 0.0214159, -0.0162559, 0.999467)
+bones/6/rotation = Quaternion(0.0184886, 0.0213069, -0.00689597, 0.999578)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "wood.l.005.l"
 bones/7/parent = 6
 bones/7/rest = Transform3D(0.981222, -0.190023, 0.0330881, 0.190551, 0.981583, -0.0136025, -0.0298939, 0.019652, 0.99936, -2.98023e-08, 1.20258, -7.7486e-07)
 bones/7/enabled = true
 bones/7/position = Vector3(-2.98023e-08, 1.20258, -7.7486e-07)
-bones/7/rotation = Quaternion(0.00873604, 0.0160915, 0.102594, 0.994555)
+bones/7/rotation = Quaternion(0.00883284, 0.0161623, 0.103436, 0.994466)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "wood.l.006.l"
 bones/8/parent = 7
 bones/8/rest = Transform3D(-0.647312, -0.297161, 0.701913, -0.266399, 0.951001, 0.156938, -0.714156, -0.0854014, -0.694757, 5.51343e-07, 1.0985, -2.84985e-07)
 bones/8/enabled = true
 bones/8/position = Vector3(5.51343e-07, 1.0985, -2.84985e-07)
-bones/8/rotation = Quaternion(-0.1666, 0.905657, 0.022173, 0.38928)
+bones/8/rotation = Quaternion(-0.16375, 0.906113, 0.021984, 0.389437)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "wood.l.007.l"
 bones/9/parent = 8
@@ -1844,7 +1878,7 @@ bones/11/name = "string"
 bones/11/parent = 1
 bones/11/rest = Transform3D(-1, 2.72168e-19, 2.9246e-06, 2.28859e-19, -1, 1.71315e-13, 2.9246e-06, 1.71315e-13, 1, -5.07507e-07, -5.75528, -0.847646)
 bones/11/enabled = true
-bones/11/position = Vector3(-1.21546e-07, -9.6052, -0.262847)
+bones/11/position = Vector3(-2.75967e-07, -5.84798, -0.262847)
 bones/11/rotation = Quaternion(1.4623e-06, 8.56574e-14, 1, -1.08272e-20)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "wood.r"
@@ -1852,49 +1886,49 @@ bones/12/parent = 1
 bones/12/rest = Transform3D(0.703119, 0.709886, 0.0410572, 0.701514, -0.701946, 0.123084, 0.116196, -0.0577406, -0.991547, 1.87619, 0.475056, -0.00331761)
 bones/12/enabled = true
 bones/12/position = Vector3(1.87619, 0.475056, -0.00331761)
-bones/12/rotation = Quaternion(0.928567, 0.366218, 0.0430893, -0.0423083)
+bones/12/rotation = Quaternion(0.919115, 0.388706, 0.0437076, -0.0471719)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "wood.l.001.r"
 bones/13/parent = 12
 bones/13/rest = Transform3D(0.984334, 0.0632975, 0.164564, -0.0498406, 0.995163, -0.0846576, -0.169126, 0.0751293, 0.982727, 2.38419e-07, 1.32929, 4.54485e-07)
 bones/13/enabled = true
 bones/13/position = Vector3(2.38419e-07, 1.32929, 4.54485e-07)
-bones/13/rotation = Quaternion(0.0358192, 0.0828154, -0.00664801, 0.995899)
+bones/13/rotation = Quaternion(0.0406645, 0.0839189, -0.027751, 0.995256)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "wood.l.002.r"
 bones/14/parent = 13
 bones/14/rest = Transform3D(0.977836, -0.185809, -0.0964986, 0.191037, 0.980407, 0.0480269, 0.0856841, -0.0653972, 0.994174, 0, 0.957146, -5.96046e-07)
 bones/14/enabled = true
 bones/14/position = Vector3(0, 0.957146, -5.96046e-07)
-bones/14/rotation = Quaternion(-0.0351206, -0.0460961, 0.123156, 0.990694)
+bones/14/rotation = Quaternion(-0.0295883, -0.0457566, 0.10236, 0.993254)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "wood.l.003.r"
 bones/15/parent = 14
 bones/15/rest = Transform3D(0.974476, -0.219206, -0.0484373, 0.220691, 0.974949, 0.0277415, 0.0411429, -0.0377231, 0.998441, -1.19209e-07, 1.33487, 3.57628e-07)
 bones/15/enabled = true
 bones/15/position = Vector3(-1.19209e-07, 1.33487, 3.57628e-07)
-bones/15/rotation = Quaternion(-0.0195195, -0.0230854, 0.135974, 0.990251)
+bones/15/rotation = Quaternion(-0.016573, -0.0227412, 0.119284, 0.992461)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "wood.l.004.r"
 bones/16/parent = 15
 bones/16/rest = Transform3D(0.99728, -0.01582, 0.0719933, 0.0180779, 0.999361, -0.0308203, -0.0714598, 0.0320379, 0.996929, 2.38419e-07, 1.06846, 2.98023e-08)
 bones/16/enabled = true
 bones/16/position = Vector3(2.38419e-07, 1.06846, 2.98023e-08)
-bones/16/rotation = Quaternion(0.0156672, 0.035434, 0.0190229, 0.999068)
+bones/16/rotation = Quaternion(0.0171344, 0.0355491, 0.00978813, 0.999173)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "wood.l.005.r"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.980697, 0.181222, 0.0734344, -0.175785, 0.981583, -0.0747953, -0.0856366, 0.0604428, 0.994491, 1.63913e-07, 1.20258, -2.38419e-07)
 bones/17/enabled = true
 bones/17/position = Vector3(1.63913e-07, 1.20258, -2.38419e-07)
-bones/17/rotation = Quaternion(0.0362654, 0.0396741, -0.096383, 0.993892)
+bones/17/rotation = Quaternion(0.0365838, 0.0395986, -0.0971532, 0.993808)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "wood.l.006.r"
 bones/18/parent = 17
 bones/18/rest = Transform3D(-0.593859, 0.308784, 0.742956, 0.205758, 0.951001, -0.230785, -0.777814, 0.0158157, -0.628296, -5.81145e-07, 1.0985, 6.18398e-07)
 bones/18/enabled = true
 bones/18/position = Vector3(-5.81145e-07, 1.0985, 6.18398e-07)
-bones/18/rotation = Quaternion(0.15548, 0.888887, -0.0638535, 0.426179)
+bones/18/rotation = Quaternion(0.152904, 0.889308, -0.0625929, 0.42642)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "wood.l.007.r"
 bones/19/parent = 18
@@ -1984,7 +2018,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.4, 0)
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="imported_ballista/ballista/Skeleton3D/base/Head/ballista_head/raycast_enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24.7225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.5)
 shape = SubResource("BoxShape3D_ruje3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="imported_ballista"]
@@ -1993,6 +2027,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_qgkp7")
 }
 autoplay = "fade_in"
+
+[node name="anim_preview" type="AnimationPlayer" parent="imported_ballista"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_qgkp7")
+}
+autoplay = "fade_in"
+speed_scale = 1.5
 
 [node name="debug" type="AnimationPlayer" parent="imported_ballista"]
 unique_name_in_owner = true
@@ -2005,7 +2047,7 @@ autoplay = "fade_in"
 script = ExtResource("34_rdbwv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91647, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85493, 0)
 shape = SubResource("CylinderShape3D_rdbwv")
 
 [node name="Sprite3D" type="Sprite3D" parent="detection"]
@@ -2036,8 +2078,8 @@ value = 100.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, 0)
-mesh = SubResource("TextMesh_xwmvl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7, 0)
+mesh = SubResource("TextMesh_rdbwv")
 
 [connection signal="body_entered" from="CheckEnemy" to="turret_base" method="_on_check_enemy_body_entered"]
 [connection signal="body_exited" from="CheckEnemy" to="turret_base" method="_on_check_enemy_body_exited"]

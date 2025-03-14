@@ -9,14 +9,12 @@ var targets
 	##print(anim_player.get_queue())
 	#print("CURRENT ANIMATION: " + anim_player.current_animation)
 func play_anim(anim : String):
-	if anim_player != null:
-		if anim_player.has_animation(anim) && !anim_player.is_playing():
-			anim_player.play(anim)
-		elif anim_player.has_animation(anim) && anim_player.is_playing() && anim_player.current_animation != anim:
-			queue_anim(anim)
-#func play_anim_next(anim : String):
-	#if anim_player != null:
-		#anim_player.animation_set_next("shoot","reload")
+	if !anim_player.is_playing():
+		anim_player.play(anim)
+	elif anim_player.is_playing() && anim_player.current_animation != anim:
+		if anim_player.animation_get_next(anim) != anim:
+			anim_player.queue(anim)
+
 func is_animation_playing(anim):
 	if anim_player.is_playing() and anim_player.current_animation == anim:
 		return true

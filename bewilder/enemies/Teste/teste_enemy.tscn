@@ -279,7 +279,7 @@ corner_radius_bottom_right = 15
 
 [node name="TesteEnemy" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "brain") groups=["enemy"]]
 script = ExtResource("1_ckvd0")
-mesh = NodePath("MeshInstance3D/MeshInstance3D5")
+mesh = NodePath("MeshInstance3D")
 brain = NodePath("Brain")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -346,7 +346,6 @@ parent = NodePath("..")
 [node name="Attack_Range" parent="Brain" instance=ExtResource("4_0uxv2")]
 
 [node name="Health" parent="Brain" instance=ExtResource("5_buvvt")]
-visible = false
 script = ExtResource("6_0uxv2")
 
 [node name="anim_debug" type="AnimationPlayer" parent="."]

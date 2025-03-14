@@ -65,9 +65,9 @@ bones/59/position = Vector3(-2.04908, -0.631856, -4.28285)
 bones/59/rotation = Quaternion(-0.362787, 0.0312702, -0.0614841, 0.929316)
 
 [node name="hairFrontBang" parent="Stella/Skeleton3D" index="0"]
-transform = Transform3D(0.608713, 2.27968e-09, -1.96445e-09, -2.58418e-09, 0.599601, -0.104933, 1.54205e-09, 0.104933, 0.5996, -0.619144, 3.77714, 2.25967)
+transform = Transform3D(0.608713, 2.27965e-09, -1.96448e-09, -2.58417e-09, 0.5996, -0.104933, 1.54211e-09, 0.104933, 0.5996, -0.619144, 3.77714, 2.25967)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Stella/Skeleton3D" index="12"]
-transform = Transform3D(0.713647, -0.69456, -0.0910781, 0.674055, 0.64548, 0.359173, -0.190678, -0.317715, 0.928816, -2.04911, 2.00215, -0.631869)
+transform = Transform3D(0.713647, -0.69456, -0.0910775, 0.674055, 0.64548, 0.359174, -0.190679, -0.317715, 0.928816, -2.04911, 2.00215, -0.631868)
 bone_name = "hand_right"
 bone_idx = 35

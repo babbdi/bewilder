@@ -167,10 +167,10 @@ states/Jump/position = Vector2(420, 190)
 states/Run/node = SubResource("AnimationNodeBlendTree_o8yux")
 states/Run/position = Vector2(200, 302)
 transitions = ["Run", "Idle", SubResource("AnimationNodeStateMachineTransition_as1wm"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_bqh0a"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_onqi1"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_ux0cw"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_8g6od"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_ajsss"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_8tems"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_w5ewm"), "Fall", "Jump", SubResource("AnimationNodeStateMachineTransition_3oxys"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_deshh"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_vkkif"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_t04p0"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_qstqp")]
-graph_offset = Vector2(-280, 87)
+graph_offset = Vector2(-264, 57)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dmbep"]
-graph_offset = Vector2(-135, 143)
+graph_offset = Vector2(-189, 87)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_5mhl2")
 nodes/StateMachine/position = Vector2(80, 140)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -275,7 +275,7 @@ bones/59/position = Vector3(-2.43053, -0.0106509, -3.65131)
 bones/59/rotation = Quaternion(-0.706103, 0.0376582, -0.0376578, 0.706103)
 
 [node name="hairFrontBang" parent="stella_imported/Stella/Skeleton3D" index="0"]
-transform = Transform3D(0.608709, -0.00174433, 0.00151041, 0.00173623, 0.608702, 0.00325754, -0.00151972, -0.00325313, 0.608702, -0.629907, 4.4195, 0.994678)
+transform = Transform3D(0.608708, -0.00179351, 0.00155276, 0.00178495, 0.608701, 0.00334927, -0.0015626, -0.00334471, 0.608702, -0.629846, 4.41948, 0.994809)
 
 [node name="hairFrontBang" parent="stella_imported/Stella/Skeleton3D/hairFrontBang" index="0"]
 transform = Transform3D(1, 7.98362e-20, 0, 9.635e-21, 1, 1.81899e-12, 0, -3.63798e-12, 1, 0, -5.72205e-06, 0.287985)
@@ -347,7 +347,7 @@ process_thread_group = 0
 physics_interpolation_mode = 0
 auto_translate_mode = 0
 editor_description = ""
-transform = Transform3D(0.99992, 0.0126344, 0.000112857, 0.00945535, -0.742339, -0.669958, -0.00838071, 0.669905, -0.742399, 4.97838e-14, 4.99417, 0.792917)
+transform = Transform3D(0.999916, 0.0129897, 0.000119281, 0.00971915, -0.742, -0.67033, -0.00861889, 0.670274, -0.742064, 4.97838e-14, 4.99417, 0.792917)
 rotation_edit_mode = 0
 rotation_order = 2
 top_level = false

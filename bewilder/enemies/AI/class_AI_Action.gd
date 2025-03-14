@@ -14,6 +14,7 @@ func is_detectable(body):
 			return true
 
 func die(who):
+	#brain.parent.remove_from_group("enemy")
 	await on_death()
 	who.queue_free()
 

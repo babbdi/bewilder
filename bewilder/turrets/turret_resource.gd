@@ -32,8 +32,6 @@ var ray_cast
 
 @export var current_ammo := INF
 @export var magazine_capacity := INF
-@export var reserve_ammo := INF
-@export var max_reserve_ammo := INF
 @export var one_shot : bool = false
 @export var auto_fire : bool = false
 @export var max_fire_rate_ms : float = 50

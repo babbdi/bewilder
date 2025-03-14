@@ -44,7 +44,7 @@ var previewing: bool = false # animar preview
 @export_category("Rotation")
 
 #@export var outline : MeshInstance3D
-@onready var anim : AnimationPlayer
+@export var anim : AnimationPlayer
 
 @export var body: Node3D # Component to be rotated
 @export var head: Node3D# Component to be elevated
@@ -53,8 +53,14 @@ var previewing: bool = false # animar preview
 @export var detection : StaticBody3D
 var last_fire_time = -999999
 
+var current_ammo := 0.0: set = set_current_ammo
+var magazine_capacity := 0.0: set = set_magazine_capacity
+
 func _ready() -> void:
 	detection.set_process_mode(PROCESS_MODE_DISABLED)
+	resource = resource.duplicate()
+	current_ammo = resource.current_ammo
+	magazine_capacity = resource.magazine_capacity
 	elevation_speed_deg = resource.elevation_speed_deg
 	rotation_speed_deg = resource.rotation_speed_deg
 	min_elevation_deg = resource.min_elevation_deg
@@ -76,15 +82,16 @@ func play_previewing_anim_fade_out():
 	_turret_base.anim_player.play("previewing_fade_in", -1, -1, true)
 func _physics_process(delta: float) -> void:
 	if just_spawned:
-		_turret_base.play_anim("fade_in")
+		%anim_preview.play("fade_in")
 		just_spawned = false
-		#
 	if !targets.is_empty() && !previewing:
 		target = targets.front()
 		rotate_and_elevate(delta, target.global_position)
 		if can_shoot():
-			shoot()
-	%MeshInstance3D.mesh.text = str(%AnimationPlayer.current_animation)
+			anim.play("shoot")
+	%MeshInstance3D.mesh.text = str(%AnimationPlayer.current_animation) + "\n" + str(current_ammo) + "\n" + str(%AnimationPlayer.get_queue())
+	
+	
 func rotate_and_elevate(delta: float, current_target:Vector3) -> void:
 	# Project the target onto the XZ plane of the turret
 	# but first adjust by the global position because
@@ -184,25 +191,19 @@ func body_exited_rc_enemy(body: Node3D) -> void:
 		enemy_in_raycast = false
 			
 func can_shoot():
-	if enemy_in_raycast && resource.current_ammo > 0:
-		if !_turret_base.is_animation_playing("reload"):
-			#print("PODE ATIRAR")
+	if current_ammo > 0.0:
+		if enemy_in_raycast:#!_turret_base.is_animation_playing("reload") && 
+			print("PODE ATIRAR")
 			return true
-	elif resource.current_ammo <= 0:
-		#print("PRECISA RECARREGAR")
-		reload()
 		
 		
-
-func shoot():
-	_turret_base.play_anim("shoot")
-	resource.current_ammo -= 1
-	last_fire_time = Time.get_ticks_msec()
-	if resource.one_shot == true:
-		#print("OI")
-		reload()
+	#if resource.one_shot == true:
+		##print("OI")
+		#reload()
 	#target.take_damage(attack)
-func spawn_projectile():
+func shoot():
+	current_ammo -= 1
+	last_fire_time = Time.get_ticks_msec()
 	var projectile_instantiate = projectile_scene.instantiate()
 	add_child(projectile_instantiate)
 	projectile_instantiate.scale = Vector3(0.25,0.25,0.25)
@@ -216,34 +217,31 @@ func spawn_projectile():
 	#await get_tree().create_timer(resource.projectile_life_time * 100).timeout
 	#projectile_instantiate.queue_free()
 	#print("PROJECTILE SPAWNED")
-	
+
+
+
 func reload():
-	#projectile_instantiate.trigger_shoot = true
-	var can_reload = get_amount_can_reload()
-	if can_reload < 0:
-		return
-		#print("NAO PODE CARREGAR")
-	elif resource.magazine_capacity == INF or resource.current_ammo == INF:
-		resource.current_ammo = resource.magazine_capacity
-	else:
-		resource.current_ammo += can_reload
-		resource.reserve_ammo -= can_reload
-		#if resource.one_shot == true:
-			#_turret_base.play_anim_next("reload")
-		#else:
-		_turret_base.play_anim("reload")
-		#print("CARREGANDO")
+	current_ammo += get_amount_can_reload()
+
 func get_amount_can_reload() -> int:
-	var wish_reload = resource.magazine_capacity - resource.current_ammo
-	var can_reload = min(wish_reload, resource.reserve_ammo)
-	return can_reload
+	var wish_reload = magazine_capacity - current_ammo
+	return wish_reload
 	
 
 func activate_detection():
 	detection.set_process_mode(PROCESS_MODE_INHERIT)
-	_turret_base.play_anim("reload")
+	anim.play("reload")
 		
+func set_magazine_capacity(new_magazine_capacity):
+	print("set current magagaga ", new_magazine_capacity)
+	magazine_capacity = new_magazine_capacity
 
+func set_current_ammo(new_current_ammo):
+	print("set current amomo ", new_current_ammo)
+	current_ammo = new_current_ammo
+	if current_ammo <= 0:
+		anim.play("reload")
+		
 #func update_turret_info():
 	#%turret_name.text = str(turret_name)
 	#%turret_damage.text = %turret_damage.text + str(damage)

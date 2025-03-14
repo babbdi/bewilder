@@ -19,6 +19,7 @@ var targets : Array
 #var is_in_attack_range = false
 
 func _ready() -> void:
+	
 	max_health = parent.max_health
 	current_health = max_health
 	
@@ -51,7 +52,6 @@ func set_max_health(new_max_health):
 	max_health = new_max_health
 
 func set_current_health(new_current_health):
-	
 	if new_current_health < current_health:
 		%anim_debug.play("hurt")
 	else:
@@ -60,7 +60,9 @@ func set_current_health(new_current_health):
 	tween.tween_property(%HealthBar, "value", new_current_health, 0.6)
 	current_health = new_current_health
 	#print(current_health)
+	
 
+	
 func debug():
 	%HealthBar.max_value = max_health
 	%HealthBar.value = current_health
