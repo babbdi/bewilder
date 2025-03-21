@@ -5,19 +5,19 @@ class_name resource_material extends Node3D
 @export var wood_collision_shape : CollisionShape3D
 
 #@onready var mesh = Node3D
-@onready var mesh_node = %mesh_node
+@onready var mesh_node := %mesh_node
 
-@onready var debug_status = %debug_status
+@onready var debug_status := %debug_status
 
 var is_being_held : bool = false
 var is_being_used : bool = false
 
-@onready var anim_player = %anim_player
+@onready var anim_player := %anim_player
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
 	#spawn_mesh()
-	var find_child_collision = mesh_node.find_child("CollisionShape3D") ## pega a colisão da mesh 
+	var find_child_collision := mesh_node.find_child("CollisionShape3D") ## pega a colisão da mesh 
 	match selected_material:
 		"Wood":
 			find_child_collision.reparent(self) ## parasita a mesh de colisão do filho 
@@ -34,14 +34,9 @@ func _process(delta: float) -> void:
 	else:
 		debug_status.mesh.text = "STATUS: NOT USED: " + selected_material
 
-func disable_collision():
-	#%collision_shape.disabled = true
-	pass
-func enable_collision():
-	#%collision_shape.disabled = false
-	pass
 
 
-func is_used():
+
+func is_used() -> void:
 	is_being_held = false
 	queue_free()

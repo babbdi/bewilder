@@ -21,6 +21,10 @@ Events="*res://autoload/events.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Dialogo="*res://autoload/dialogo.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+
 [dialogue_manager]
 
 runtime/balloon_path="res://NPCs/Melbourne/dialogo/balloon.tscn"

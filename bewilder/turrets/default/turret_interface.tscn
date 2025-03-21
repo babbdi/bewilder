@@ -1,0 +1,164 @@
+[gd_scene load_steps=9 format=3 uid="uid://6s00h1a24o4m"]
+
+[ext_resource type="Script" uid="uid://b6q2il2s5u02" path="res://turrets/hud/turret_interface.gd" id="1_xb3cw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t0t01"]
+transparency = 1
+albedo_color = Color(0.513, 0.629533, 0.95, 0.301961)
+billboard_keep_scale = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rdbwv"]
+material = SubResource("StandardMaterial3D_t0t01")
+top_radius = 0.001
+bottom_radius = 0.0
+radial_segments = 4
+rings = 64
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xwmvl"]
+material = SubResource("StandardMaterial3D_t0t01")
+size = Vector2(2.35, 2.35)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_efyj4"]
+viewport_path = NodePath("interface_mesh/Interface/SubViewport")
+
+[sub_resource type="Animation" id="Animation_pmcb1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("triange_mesh:mesh:top_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("interface_mesh:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2uyly"]
+resource_name = "show_interface"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 0, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("triange_mesh:mesh:top_radius")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.167]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("interface_mesh:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.566667, 1.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0.6), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxlhb"]
+_data = {
+&"RESET": SubResource("Animation_pmcb1"),
+&"show_interface": SubResource("Animation_2uyly")
+}
+
+[node name="turret_interface" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_xb3cw")
+
+[node name="triange_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_rdbwv")
+skeleton = NodePath("")
+
+[node name="interface_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 2.1)
+mesh = SubResource("PlaneMesh_xwmvl")
+
+[node name="Interface" type="Sprite3D" parent="interface_mesh"]
+transform = Transform3D(1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, 0, 0.00862384, 5.96046e-08)
+double_sided = false
+texture = SubResource("ViewportTexture_efyj4")
+
+[node name="SubViewport" type="SubViewport" parent="interface_mesh/Interface"]
+transparent_bg = true
+snap_2d_vertices_to_pixel = true
+msaa_2d = 3
+use_hdr_2d = true
+size = Vector2i(220, 220)
+
+[node name="Control" type="Control" parent="interface_mesh/Interface/SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="interface_mesh/Interface/SubViewport/Control"]
+layout_mode = 0
+offset_right = 156.0
+offset_bottom = 44.0
+
+[node name="turret_name" type="Label" parent="interface_mesh/Interface/SubViewport/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "*humor escatologico*"
+
+[node name="turret_damage" type="Label" parent="interface_mesh/Interface/SubViewport/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "textotextotexto"
+
+[node name="turret_fire_speed" type="Label" parent="interface_mesh/Interface/SubViewport/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ":-)"
+
+[node name="turret_interface_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hxlhb")
+}
+autoplay = "show_interface"

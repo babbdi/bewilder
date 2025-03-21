@@ -1,3 +1,4 @@
+@icon("res://turrets/hud/Icons/head.svg")
 class_name turret extends Node3D
 ### previewing_fade_in, previewing_fade_out, shoot, reload, fade_in
 # My code is loosely based on code from here:
@@ -49,15 +50,14 @@ var previewing: bool = false # animar preview
 @export var body: Node3D # Component to be rotated
 @export var head: Node3D# Component to be elevated
 
-@export_category("Collisions")
-@export var detection : StaticBody3D
-var last_fire_time = -999999
+
+var last_fire_time := -999999
 
 var current_ammo := 0.0: set = set_current_ammo
 var magazine_capacity := 0.0: set = set_magazine_capacity
 
 func _ready() -> void:
-	detection.set_process_mode(PROCESS_MODE_DISABLED)
+
 	resource = resource.duplicate()
 	current_ammo = resource.current_ammo
 	magazine_capacity = resource.magazine_capacity
@@ -75,11 +75,11 @@ func _ready() -> void:
 		#shape_collision2.disabled = false
 	#if shape_collision3 != null:
 		#shape_collision3.disabled = false
-func play_previewing_anim_fade_in():
-	_turret_base.anim_player.play("previewing_fade_in")
+func play_previewing_anim_fade_in() -> void:
+	%anim_preview.play("previewing_fade_in")
 	#print("AAAAAAAAAAAAAAA")
-func play_previewing_anim_fade_out():
-	_turret_base.anim_player.play("previewing_fade_in", -1, -1, true)
+func play_previewing_anim_fade_out() -> void:
+	%anim_preview.play("previewing_fade_in", -1, -1, true)
 func _physics_process(delta: float) -> void:
 	if just_spawned:
 		%anim_preview.play("fade_in")
@@ -164,7 +164,7 @@ func get_angle_to_target(seeker_pos:Vector3, target_pos:Vector3, facing_dir:Vect
 	# is above or below, or use seeker.global_transform.basis.x
 	# to see if target is to the left or right.
 	# Return value guaranteed to be between 0 and pi
-	var dir_to = seeker_pos.direction_to(target_pos)
+	var dir_to := seeker_pos.direction_to(target_pos)
 	# Normalizing IS necessary under certain circumstances.
 	facing_dir = facing_dir.normalized()
 	dir_to = dir_to.normalized()
@@ -180,7 +180,7 @@ func get_projected(pos:Vector3, normal:Vector3) -> Vector3:
 	# projected point.
 	return pos - projection
 
-var enemy_in_raycast = false
+var enemy_in_raycast := false
 func body_entered_rc_enemy(body: Node3D) -> void:
 	if body.has_method("take_damage") && body == target:
 		enemy_in_raycast = true
@@ -190,21 +190,24 @@ func body_exited_rc_enemy(body: Node3D) -> void:
 	if body.has_method("take_damage") && body == target:
 		enemy_in_raycast = false
 			
-func can_shoot():
+func can_shoot() -> bool:
 	if current_ammo > 0.0:
 		if enemy_in_raycast:#!_turret_base.is_animation_playing("reload") && 
 			print("PODE ATIRAR")
 			return true
+		else:
+			return false
+	else: return false
 		
 		
 	#if resource.one_shot == true:
 		##print("OI")
 		#reload()
 	#target.take_damage(attack)
-func shoot():
+func shoot() -> void:
 	current_ammo -= 1
 	last_fire_time = Time.get_ticks_msec()
-	var projectile_instantiate = projectile_scene.instantiate()
+	var projectile_instantiate := projectile_scene.instantiate()
 	add_child(projectile_instantiate)
 	projectile_instantiate.scale = Vector3(0.25,0.25,0.25)
 	projectile_instantiate._position = projectile_spawn_location.global_position
@@ -220,23 +223,22 @@ func shoot():
 
 
 
-func reload():
+func reload() -> void:
 	current_ammo += get_amount_can_reload()
 
 func get_amount_can_reload() -> int:
-	var wish_reload = magazine_capacity - current_ammo
+	var wish_reload := magazine_capacity - current_ammo
 	return wish_reload
 	
 
-func activate_detection():
-	detection.set_process_mode(PROCESS_MODE_INHERIT)
-	anim.play("reload")
+
+
 		
-func set_magazine_capacity(new_magazine_capacity):
+func set_magazine_capacity(new_magazine_capacity : float) -> void:
 	print("set current magagaga ", new_magazine_capacity)
 	magazine_capacity = new_magazine_capacity
 
-func set_current_ammo(new_current_ammo):
+func set_current_ammo(new_current_ammo : float) -> void:
 	print("set current amomo ", new_current_ammo)
 	current_ammo = new_current_ammo
 	if current_ammo <= 0:

@@ -7,12 +7,12 @@ var speed : float
 var pen : int
 var trigger_shoot : bool = false
 
-var _position
-var _angle
+var _position : Vector3
+var _angle : Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("spawnou um tiro")
-func _update_info():
+func _update_info() -> void:
 	self.global_position = _position
 	self.rotation = _angle
 	self.scale = _scale
@@ -23,12 +23,12 @@ func _process(delta: float) -> void:
 		projectile_break()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	var attack = Attack.new()
+	var attack := Attack.new()
 	attack.attack_damage = damage
 	if body.has_method("take_damage"):
 		#print("ui")
 		body.take_damage(attack)
 		pen -= 1
 
-func projectile_break():
+func projectile_break() -> void:
 	queue_free()

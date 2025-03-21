@@ -3,8 +3,8 @@ extends Node3D
 @export_enum("Default","Clockwork", "Ballista") var chosen_blueprint : String = "Default"
 
 
-@onready var mesh = $mesh_text
-@onready var collision = $Area3D/CollisionShape3D
+@onready var mesh := $mesh_text
+@onready var collision := $Area3D/CollisionShape3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mesh.mesh.text = chosen_blueprint
@@ -29,5 +29,5 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		collision.disabled = true
 		#%AnimationPlayer.play("picked")
 
-func delete():
+func delete() -> void:
 	queue_free()

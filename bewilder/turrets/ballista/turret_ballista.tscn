@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://b5o616jnf023j"]
+[gd_scene load_steps=77 format=4 uid="uid://b5o616jnf023j"]
 
 [ext_resource type="Script" uid="uid://dixvkx6oafet" path="res://turrets/turret_class.gd" id="1_f5ujg"]
 [ext_resource type="Script" uid="uid://ddf4er43x4un5" path="res://turrets/turret_base.gd" id="2_1nthg"]
@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bwysoxwvaigc0" path="res://turrets/ballista/import/ballistaDart_dart_Emission.png" id="31_r0pmi"]
 [ext_resource type="Texture2D" uid="uid://4dwc1vpvx3pi" path="res://turrets/ballista/import/ballistaDart_dart_Metallic-dart_Roughness.png" id="32_d0pxj"]
 [ext_resource type="Texture2D" uid="uid://3xvr0pbey3w0" path="res://turrets/ballista/import/ballistaDart_dart_Normal.png" id="33_4qtye"]
-[ext_resource type="Script" uid="uid://few8nphnlkhm" path="res://turrets/ballista/detection.gd" id="34_rdbwv"]
+[ext_resource type="PackedScene" uid="uid://6s00h1a24o4m" path="res://turrets/default/turret_interface.tscn" id="35_xwmvl"]
 
 [sub_resource type="Resource" id="Resource_xwmvl"]
 script = ExtResource("2_rdbwv")
@@ -54,10 +54,11 @@ one_shot = true
 auto_fire = false
 max_fire_rate_ms = 10000.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rdbwv"]
+height = 1.9
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_rdbwv"]
 radius = 11.0343
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_xwmvl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5xov"]
 resource_name = "base"
@@ -728,34 +729,22 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../detection:process_mode")
+tracks/13/path = NodePath(".:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath(".:rotation")
+tracks/14/path = NodePath(".:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath(".:position")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -873,18 +862,6 @@ tracks/8/keys = {
 "args": [],
 "method": &"activate_detection"
 }]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../detection:process_mode")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 0]
 }
 
 [sub_resource type="Animation" id="Animation_otfx3"]
@@ -1031,105 +1008,6 @@ tracks/19/path = NodePath("ballista/Skeleton3D:side_gear")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, -3.79308e-08, -0.707107, 6.88394e-08, 0.707107, 0.0333333, 1, -3.79308e-08, -0.707107, 6.88394e-08, 0.707107, 0.0666667, 1, -0.00952021, -0.707043, 0.00952025, 0.707043, 0.3, 1, -0.0980611, -0.700274, 0.0980611, 0.700274, 0.533333, 1, -0.185055, -0.682462, 0.185056, 0.682462, 0.766667, 1, -0.269131, -0.653887, 0.269132, 0.653887, 1, 1, -0.348963, -0.615, 0.348963, 0.615, 1.26667, 1, -0.433391, -0.558724, 0.433391, 0.558724, 1.53333, 1, -0.508895, -0.490944, 0.508895, 0.490944, 1.8, 1, -0.573921, -0.413055, 0.573921, 0.413055, 2.06667, 1, -0.62713, -0.326662, 0.62713, 0.326662, 2.36667, 1, -0.671511, -0.221524, 0.671511, 0.221524, 2.66667, 1, -0.698401, -0.110616, 0.698401, 0.110616, 2.93333, 1, -0.707043, -0.00952006, 0.707043, 0.00952009, 2.96667, 1, 0.7071, -0.00317358, -0.7071, 0.00317355, 3.26667, 1, 0.69738, -0.11688, -0.69738, 0.11688, 3.56667, 1, 0.669496, -0.227542, -0.669496, 0.227542, 3.83333, 1, 0.630037, -0.32102, -0.630037, 0.32102, 4.1, 1, 0.577605, -0.407887, -0.577605, 0.407887, 4.36667, 1, 0.513281, -0.486356, -0.513281, 0.486356, 4.63333, 1, 0.438388, -0.554811, -0.438388, 0.554811, 4.86667, 1, 0.365395, -0.605381, -0.365395, 0.605381, 5.1, 1, 0.28664, -0.646404, -0.28664, 0.646404, 5.33333, 1, 0.203363, -0.677232, -0.203363, 0.677232, 5.56667, 1, 0.11688, -0.69738, -0.11688, 0.69738, 5.8, 1, 0.0285534, -0.70653, -0.0285534, 0.70653, 5.875, 1, -9.9748e-08, -0.707107, 1.30657e-07, 0.707107)
-
-[sub_resource type="Animation" id="Animation_6jg54"]
-resource_name = "previewing_fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ballista/Skeleton3D/base:surface_material_override/0:shader_parameter/dissolveSlider")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/3:shader_parameter/dissolveSlider")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/2:shader_parameter/dissolveSlider")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/1:shader_parameter/dissolveSlider")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ballista/Skeleton3D/base:surface_material_override/3:shader_parameter/dissolveSlider")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("ballista/Skeleton3D/base:surface_material_override/2:shader_parameter/dissolveSlider")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.516]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("ballista/Skeleton3D/base:surface_material_override/1:shader_parameter/dissolveSlider")
-tracks/6/interp = 2
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.5]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/0:shader_parameter/dissolveSlider")
-tracks/7/interp = 2
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.9, 0.516]
-}
 
 [sub_resource type="Animation" id="Animation_rdbwv"]
 resource_name = "heal"
@@ -1306,6 +1184,105 @@ tracks/19/path = NodePath("ballista/Skeleton3D:side_gear")
 tracks/19/interp = 0
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, -3.79308e-08, -0.707107, 6.88394e-08, 0.707107)
+
+[sub_resource type="Animation" id="Animation_6jg54"]
+resource_name = "previewing_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ballista/Skeleton3D/base:surface_material_override/0:shader_parameter/dissolveSlider")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/3:shader_parameter/dissolveSlider")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/2:shader_parameter/dissolveSlider")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/1:shader_parameter/dissolveSlider")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ballista/Skeleton3D/base:surface_material_override/3:shader_parameter/dissolveSlider")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ballista/Skeleton3D/base:surface_material_override/2:shader_parameter/dissolveSlider")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.516]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ballista/Skeleton3D/base:surface_material_override/1:shader_parameter/dissolveSlider")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.5]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ballista/Skeleton3D/base/Head/ballista_head:surface_material_override/0:shader_parameter/dissolveSlider")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.9, 0.516]
+}
 
 [sub_resource type="Animation" id="Animation_ado3x"]
 resource_name = "reload"
@@ -1720,25 +1697,6 @@ _data = {
 &"shoot": SubResource("Animation_gc3bl")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_rdbwv"]
-height = 0.239559
-radius = 0.7
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_rdbwv"]
-viewport_path = NodePath("detection/Sprite3D/SubViewport")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwmvl"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pbsr"]
-bg_color = Color(0.62066, 0.0715949, 0.210089, 1)
-border_width_left = 15
-border_width_right = 15
-border_color = Color(0.478431, 0.211765, 0.25098, 1)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_bottom_right = 15
-
 [sub_resource type="FontFile" id="FontFile_rdbwv"]
 subpixel_positioning = 0
 msdf_pixel_range = 14
@@ -1759,37 +1717,51 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_rdbwv"]
 material = SubResource("StandardMaterial3D_rdbwv")
+text = "MEWEESH"
 font = SubResource("FontFile_rdbwv")
 font_size = 31
 vertical_alignment = 0
 uppercase = true
 
-[node name="TurretBallista" type="Node3D" node_paths=PackedStringArray("_turret_base", "projectile_spawn_location", "anim", "body", "head", "detection")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rdbwv"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwmvl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pbsr"]
+bg_color = Color(0.62066, 0.0715949, 0.210089, 1)
+border_width_left = 15
+border_width_right = 15
+border_color = Color(0.478431, 0.211765, 0.25098, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_bottom_right = 15
+
+[node name="TurretBallista" type="Node3D" node_paths=PackedStringArray("_turret_base", "projectile_spawn_location", "anim", "body", "head")]
 script = ExtResource("1_f5ujg")
 resource = SubResource("Resource_xwmvl")
 projectile_scene = ExtResource("29_ritra")
-_turret_base = NodePath("turret_base")
+_turret_base = NodePath("")
 projectile_spawn_location = NodePath("imported_ballista/ballista/Skeleton3D/base/Head/ballista_head/projectile_spawn")
 anim = NodePath("imported_ballista/AnimationPlayer")
 body = NodePath("imported_ballista/ballista/Skeleton3D/base")
 head = NodePath("imported_ballista/ballista/Skeleton3D/base/Head")
-detection = NodePath("detection")
 metadata/_custom_type_script = "uid://dixvkx6oafet"
 
-[node name="turret_base" type="Node3D" parent="." node_paths=PackedStringArray("anim_player")]
+[node name="turret_base" type="CharacterBody3D" parent="." groups=["interactable", "turret"]]
 script = ExtResource("2_1nthg")
-anim_player = NodePath("../imported_ballista/AnimationPlayer")
+metadata/_custom_type_script = "uid://ddf4er43x4un5"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="turret_base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+shape = SubResource("CylinderShape3D_rdbwv")
 
 [node name="CheckEnemy" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CheckEnemy"]
 shape = SubResource("SphereShape3D_rdbwv")
 debug_color = Color(1, 1, 1, 0.42)
-
-[node name="outline" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_xwmvl")
-skeleton = NodePath("")
 
 [node name="imported_ballista" type="Node3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -2026,14 +1998,14 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_qgkp7")
 }
-autoplay = "fade_in"
+autoplay = "RESET"
 
 [node name="anim_preview" type="AnimationPlayer" parent="imported_ballista"]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_qgkp7")
 }
-autoplay = "fade_in"
+autoplay = "RESET"
 speed_scale = 1.5
 
 [node name="debug" type="AnimationPlayer" parent="imported_ballista"]
@@ -2043,22 +2015,22 @@ libraries = {
 }
 autoplay = "fade_in"
 
-[node name="detection" type="StaticBody3D" parent="." groups=["turret"]]
-script = ExtResource("34_rdbwv")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7, 0)
+mesh = SubResource("TextMesh_rdbwv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="detection"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85493, 0)
-shape = SubResource("CylinderShape3D_rdbwv")
+[node name="turret_interface" parent="." instance=ExtResource("35_xwmvl")]
 
-[node name="Sprite3D" type="Sprite3D" parent="detection"]
+[node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3, 0)
 billboard = 2
 texture = SubResource("ViewportTexture_rdbwv")
 
-[node name="SubViewport" type="SubViewport" parent="detection/Sprite3D"]
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
 transparent_bg = true
 
-[node name="HealthBar" type="ProgressBar" parent="detection/Sprite3D/SubViewport"]
+[node name="HealthBar" type="ProgressBar" parent="Sprite3D/SubViewport"]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -2076,12 +2048,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_xwmvl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8pbsr")
 value = 100.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7, 0)
-mesh = SubResource("TextMesh_rdbwv")
-
-[connection signal="body_entered" from="CheckEnemy" to="turret_base" method="_on_check_enemy_body_entered"]
-[connection signal="body_exited" from="CheckEnemy" to="turret_base" method="_on_check_enemy_body_exited"]
 [connection signal="body_entered" from="imported_ballista/ballista/Skeleton3D/base/Head/ballista_head/raycast_enemy" to="." method="body_entered_rc_enemy"]
 [connection signal="body_exited" from="imported_ballista/ballista/Skeleton3D/base/Head/ballista_head/raycast_enemy" to="." method="body_exited_rc_enemy"]

@@ -1,31 +1,15 @@
-class_name turret_base extends Node3D
+@icon("res://turrets/hud/Icons/base.svg")
+class_name turret_base extends CharacterBody3D
 
-@export var anim_player : AnimationPlayer
+var targets : Array
 
-
-var targets
-
-#func _physics_process(delta: float) -> void:
-	##print(anim_player.get_queue())
-	#print("CURRENT ANIMATION: " + anim_player.current_animation)
-func play_anim(anim : String):
-	if !anim_player.is_playing():
-		anim_player.play(anim)
-	elif anim_player.is_playing() && anim_player.current_animation != anim:
-		if anim_player.animation_get_next(anim) != anim:
-			anim_player.queue(anim)
-
-func is_animation_playing(anim):
-	if anim_player.is_playing() and anim_player.current_animation == anim:
-		return true
-func queue_anim(name : String):
-	var anim_player : AnimationPlayer = anim_player
-	if not anim_player: return
-	anim_player.queue(name)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	targets = get_parent().targets
-
+	resource = get_parent().resource
+	max_health = resource.max_health
+	current_health = resource.max_health
+	debug()
 func _on_check_enemy_body_entered(body: Node3D) -> void:
 	if body != null:
 			if body.has_method("take_damage") && body.is_in_group("enemy"):
@@ -36,3 +20,33 @@ func _on_check_enemy_body_exited(body: Node3D) -> void:
 	if body != null:
 			if targets.has(body) && body.is_in_group("enemy"):
 				targets.erase(body)
+
+var max_health := 1.0:
+	set = set_max_health
+var current_health := 1.0:
+	set = set_current_health
+	
+var resource : Resource
+
+func take_damage(attack: Attack) -> void:
+	print("torreta levou dano")
+	current_health -= attack.attack_damage
+	if current_health <= 0:
+		get_parent().queue_free()
+	
+func set_current_health(new_current_health : float) -> void:
+	if new_current_health < current_health:
+		%debug.play("hurt")
+	else:
+		%debug.play("heal")
+	var tween := create_tween().set_parallel()
+	tween.tween_property(%HealthBar, "value", new_current_health, 0.6)
+	current_health = new_current_health
+	print(current_health)
+	
+func set_max_health(new_max_health : float) -> void:
+	max_health = new_max_health
+	
+func debug() -> void:
+	%HealthBar.max_value = max_health
+	%HealthBar.value = current_health

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2rsiu00abdf"]
+[gd_scene load_steps=13 format=3 uid="uid://b2rsiu00abdf"]
 
 [ext_resource type="Script" uid="uid://dcgvsmyykdly3" path="res://player/stella/stella_playable/stella_playable.gd" id="1_8q04b"]
 [ext_resource type="PackedScene" uid="uid://c4xbwd1v6dq66" path="res://player/stella/stella_skin/stella_skin.tscn" id="1_tvkee"]
@@ -39,109 +39,59 @@ height = 0.3
 radial_segments = 8
 rings = 8
 
+[sub_resource type="BoxMesh" id="BoxMesh_klgoc"]
+size = Vector3(0.175, 1999.97, 0.21)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gxvn0"]
 radius = 0.4
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cwktt"]
 
-[node name="stella_playable" type="CharacterBody3D" node_paths=PackedStringArray("grab_location") groups=["player"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_klgoc"]
+radius = 4.0
+
+[node name="stella_playable" type="CharacterBody3D" node_paths=PackedStringArray("_look_at", "where_head_is", "grab_location") groups=["player"]]
 script = ExtResource("1_8q04b")
+_look_at = NodePath("stella_skin/_look_at_target")
+where_head_is = NodePath("stella_skin/where_head_is")
 grab_location = NodePath("stella_skin/GrabNode")
 
 [node name="stella_skin" parent="." instance=ExtResource("1_tvkee")]
 unique_name_in_owner = true
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="AnimationTree" parent="stella_skin" index="0"]
+[node name="AnimationTree" parent="stella_skin" index="1"]
 "parameters/StateMachine/Run/Filter Bangs Run/blend_amount" = 0
 "parameters/StateMachine/Run/Run & Hold/blend_amount" = 0
 "parameters/StateMachine/Run/Run & Running/blend_amount" = 0
 
-[node name="stella_imported" parent="stella_skin" index="1"]
+[node name="stella_imported" parent="stella_skin" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="stella_skin/stella_imported/Stella" index="0"]
-bones/1/position = Vector3(-3.44378e-07, 0, -2.28071)
-bones/1/rotation = Quaternion(-0.707107, 5.33851e-08, 5.33851e-08, 0.707107)
-bones/2/rotation = Quaternion(1.22308e-35, -1.72133e-21, -7.10543e-15, 1)
-bones/4/rotation = Quaternion(-4.23516e-22, 0, 1.43493e-42, 1)
-bones/8/rotation = Quaternion(0.936542, 4.17893e-08, 1.11645e-07, 0.350554)
-bones/10/rotation = Quaternion(7.09637e-08, -6.8201e-08, 0.999892, 0.0147011)
-bones/13/rotation = Quaternion(-7.09637e-08, -6.8201e-08, 0.999892, -0.0147011)
-bones/14/rotation = Quaternion(-0.0407764, -0.0333327, -0.720137, 0.69183)
-bones/15/rotation = Quaternion(-4.65661e-10, -4.00178e-09, 1.68802e-09, 1)
-bones/16/rotation = Quaternion(0.00476331, -1.62293e-05, -0.00167819, 0.999987)
-bones/17/rotation = Quaternion(0.0100025, 7.84815e-05, 0.018895, 0.999771)
-bones/18/rotation = Quaternion(-0.131882, -0.00059764, 0.0184564, 0.991093)
-bones/19/rotation = Quaternion(-1.99361e-09, -2.91038e-09, -5.82077e-10, 1)
-bones/20/rotation = Quaternion(2.91548e-07, 4.59608e-07, 5.6217e-07, 1)
-bones/21/rotation = Quaternion(-0.0389222, -0.000188604, 0.00797146, 0.99921)
-bones/22/rotation = Quaternion(-7.09551e-08, 4.55475e-09, 8.26549e-09, 1)
-bones/23/rotation = Quaternion(1.34147e-07, 4.4718e-07, 4.50178e-07, 1)
-bones/24/rotation = Quaternion(0.00617843, -1.37616e-05, 0.00289646, 0.999977)
-bones/25/rotation = Quaternion(-1.74623e-10, 9.72932e-09, -1.02009e-08, 1)
-bones/26/rotation = Quaternion(-5.22414e-09, 4.12707e-07, 4.04107e-07, 1)
-bones/27/rotation = Quaternion(0.00319937, -2.70173e-05, 0.00371559, 0.999988)
-bones/28/rotation = Quaternion(-1.2471e-08, -7.02221e-09, -2.85218e-09, 1)
-bones/29/rotation = Quaternion(4.27826e-09, 5.16836e-07, 5.05126e-07, 1)
-bones/30/rotation = Quaternion(0.678276, 0.00200589, -0.0648246, 0.73194)
-bones/31/rotation = Quaternion(-9.95875e-07, -4.70114e-06, 1.03493e-07, 1)
-bones/32/rotation = Quaternion(-0.0407764, 0.0333327, 0.720137, 0.69183)
-bones/33/rotation = Quaternion(-4.65661e-10, 4.00178e-09, -1.68802e-09, 1)
-bones/34/rotation = Quaternion(0.00476331, 1.62293e-05, 0.00167819, 0.999987)
-bones/35/rotation = Quaternion(0.0100025, -7.84815e-05, -0.018895, 0.999771)
-bones/36/rotation = Quaternion(-0.131882, 0.00059764, -0.0184564, 0.991093)
-bones/37/rotation = Quaternion(-1.99361e-09, 2.91038e-09, 5.82077e-10, 1)
-bones/38/rotation = Quaternion(2.91548e-07, -4.59608e-07, -5.6217e-07, 1)
-bones/39/rotation = Quaternion(-0.0389222, 0.000188604, -0.00797146, 0.99921)
-bones/40/rotation = Quaternion(-7.09551e-08, -4.55475e-09, -8.26549e-09, 1)
-bones/41/rotation = Quaternion(1.34147e-07, -4.4718e-07, -4.50178e-07, 1)
-bones/42/rotation = Quaternion(0.00617843, 1.37616e-05, -0.00289646, 0.999977)
-bones/43/rotation = Quaternion(-1.74623e-10, -9.72932e-09, 1.02009e-08, 1)
-bones/44/rotation = Quaternion(-5.22414e-09, -4.12707e-07, -4.04107e-07, 1)
-bones/45/rotation = Quaternion(0.00319937, 2.70173e-05, -0.00371559, 0.999988)
-bones/46/rotation = Quaternion(-1.2471e-08, 7.02221e-09, 2.85218e-09, 1)
-bones/47/rotation = Quaternion(4.27826e-09, -5.16836e-07, -5.05126e-07, 1)
-bones/48/rotation = Quaternion(0.678276, -0.00200589, 0.0648246, 0.73194)
-bones/49/rotation = Quaternion(-9.95875e-07, 4.70114e-06, -1.03493e-07, 1)
-bones/50/position = Vector3(0.37203, 0.000196934, -0.000172119)
-bones/50/rotation = Quaternion(-0.00960258, -0.000146466, 0.99994, -0.0053205)
-bones/51/rotation = Quaternion(-0.0528661, 0.000458006, -0.00147119, 0.9986)
-bones/52/rotation = Quaternion(0.663811, -0.0301588, -0.0119145, 0.747197)
-bones/53/rotation = Quaternion(0.0189327, -0.00805265, -0.00703798, 0.999764)
-bones/54/position = Vector3(-0.37203, 0.000196934, -0.000172119)
-bones/54/rotation = Quaternion(0.00960258, -0.000146466, 0.99994, 0.0053205)
-bones/55/rotation = Quaternion(-0.0528661, -0.000458006, 0.00147119, 0.9986)
-bones/56/rotation = Quaternion(0.663811, 0.0301588, 0.0119145, 0.747197)
-bones/57/rotation = Quaternion(0.0189327, 0.00805265, 0.00703798, 0.999764)
-bones/58/position = Vector3(2.43053, -0.0106509, -3.65131)
-bones/58/rotation = Quaternion(-0.706103, -0.0376578, 0.0376582, 0.706103)
-bones/59/position = Vector3(-2.43053, -0.0106509, -3.65131)
-bones/59/rotation = Quaternion(-0.706103, 0.0376582, -0.0376578, 0.706103)
-
 [node name="hairFrontBang" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="0"]
-transform = Transform3D(0.608709, -0.00174521, 0.00151117, 0.0017371, 0.608702, 0.00325921, -0.00152049, -0.00325471, 0.608703, -0.629906, 4.4195, 0.99468)
+transform = Transform3D(0.608709, -0.00174433, 0.00151041, 0.00173622, 0.608702, 0.00325754, -0.00151972, -0.00325313, 0.608702, -0.629907, 4.4195, 0.994678)
 
 [node name="hair" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="5"]
 surface_material_override/0 = null
 
-[node name="BoneAttachment3D" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="12"]
-transform = Transform3D(-0.0049914, -0.999844, 0.0169113, 0.99445, -0.00318573, 0.105163, -0.105093, 0.0173423, 0.994311, -2.43053, 1.3706, -0.0106509)
-
-[node name="DMWBWiggleRotationModifier3D" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="13"]
-transform = Transform3D(0.960635, 0.25659, -0.106497, -0.277747, 0.895361, -0.348116, 0.0060302, 0.363992, 0.931383, 1.06061, 4.68263, 0.581114)
-
-[node name="DMWBWiggleRotationModifier3D2" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="14"]
-transform = Transform3D(0.960635, -0.25659, 0.106497, 0.277747, 0.895361, -0.348116, -0.0060302, 0.363992, 0.931383, -1.06061, 4.68263, 0.581114)
-
 [node name="DMWBWiggleRotationModifier3D3" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="15"]
-transform = Transform3D(0.99992, 0.0126407, 0.000112969, 0.00946009, -0.742333, -0.669964, -0.00838499, 0.669912, -0.742394, 4.97838e-14, 4.99417, 0.792917)
+transform = Transform3D(0.99992, 0.0126344, 0.000112856, 0.00945534, -0.742339, -0.669958, -0.0083807, 0.669905, -0.742399, 4.97838e-14, 4.99417, 0.792917)
 
-[node name="DMWBWiggleRotationModifier3D4" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="16"]
-transform = Transform3D(-0.999568, -0.029399, 1.39907e-07, 0.029399, -0.999568, -1.38474e-07, 1.43917e-07, -1.34301e-07, 1, 1.53689, 3.82606, 1.45993e-07)
-
-[node name="DMWBWiggleRotationModifier3D5" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="17"]
-transform = Transform3D(-0.999568, 0.029399, -1.39907e-07, -0.029399, -0.999568, -1.38474e-07, -1.43917e-07, -1.34301e-07, 1, -1.53689, 3.82606, 1.45993e-07)
+[node name="_look_at_bone" type="LookAtModifier3D" parent="stella_skin/stella_imported/Stella/Skeleton3D" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.28071, 0)
+influence = 0.0
+target_node = NodePath("../../../../_look_at_target")
+bone_name = "neck"
+bone = 4
+duration = 1.0
+transition_type = 1
+ease_type = 3
+use_angle_limitation = true
+symmetry_limitation = true
+primary_limit_angle = 2.30383
+primary_damp_threshold = 1.0
+secondary_limit_angle = 0.872665
+secondary_damp_threshold = 1.0
 
 [node name="DustParticles" type="GPUParticles3D" parent="stella_skin"]
 unique_name_in_owner = true
@@ -164,6 +114,17 @@ target_position = Vector3(0, 0, -5)
 collision_mask = 3
 collide_with_areas = true
 debug_shape_thickness = 5
+
+[node name="_look_at_target" type="Marker3D" parent="stella_skin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9407e-08, 5.6, -1.78814e-07)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stella_skin/_look_at_target"]
+visible = false
+mesh = SubResource("BoxMesh_klgoc")
+
+[node name="where_head_is" type="Marker3D" parent="stella_skin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.3, 0.6)
 
 [node name="CharacterCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -226,7 +187,17 @@ alignment = 1
 stream = ExtResource("3_pgwut")
 volume_db = -35.777
 
+[node name="Collisions" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Collisions"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Area3D"]
+shape = SubResource("SphereShape3D_klgoc")
+debug_color = Color(0.66, 0.517, 0, 0.254902)
+
 [connection signal="first_person" from="." to="." method="_on_first_person"]
+[connection signal="body_entered" from="Collisions/Area3D" to="stella_skin" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Collisions/Area3D" to="stella_skin" method="_on_area_3d_body_exited"]
 
 [editable path="stella_skin"]
 [editable path="stella_skin/stella_imported"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://b01fomh83g6pq"]
+
+[ext_resource type="Script" uid="uid://dixvkx6oafet" path="res://turrets/turret_class.gd" id="1_1y1qj"]
+[ext_resource type="Script" uid="uid://cxbtl5rhamnu6" path="res://turrets/turret_resource.gd" id="2_b32bq"]
+[ext_resource type="Script" uid="uid://ddf4er43x4un5" path="res://turrets/turret_base.gd" id="2_t0t01"]
+[ext_resource type="PackedScene" uid="uid://6s00h1a24o4m" path="res://turrets/default/turret_interface.tscn" id="4_b32bq"]
+
+[sub_resource type="Resource" id="Resource_5khg5"]
+script = ExtResource("2_b32bq")
+name = ""
+max_health = 100.0
+elevation_speed_deg = 5.0
+rotation_speed_deg = 5.0
+min_elevation_deg = 0.0
+max_elevation_deg = 60.0
+projectile_damage = 10.0
+projectile_speed = 5.0
+projectile_pen = 1
+projectile_life_time = 5.0
+knockbackForce = 5
+current_ammo = inf
+magazine_capacity = inf
+one_shot = false
+auto_fire = false
+max_fire_rate_ms = 50.0
+metadata/_custom_type_script = "uid://cxbtl5rhamnu6"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b32bq"]
+viewport_path = NodePath("interface_mesh/Interface/SubViewport")
+
+[node name="turret_head" type="Node3D" node_paths=PackedStringArray("_turret_base")]
+script = ExtResource("1_1y1qj")
+resource = SubResource("Resource_5khg5")
+_turret_base = NodePath("turret_base")
+metadata/_custom_type_script = "uid://dixvkx6oafet"
+
+[node name="turret_base" type="Node3D" parent="."]
+script = ExtResource("2_t0t01")
+metadata/_custom_type_script = "uid://ddf4er43x4un5"
+
+[node name="turret_default_meshes" type="Node3D" parent="."]
+
+[node name="turret_interface" parent="turret_default_meshes" instance=ExtResource("4_b32bq")]
+
+[node name="interface_mesh" parent="turret_default_meshes/turret_interface" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 2.1)
+
+[node name="Interface" parent="turret_default_meshes/turret_interface/interface_mesh" index="0"]
+texture = SubResource("ViewportTexture_b32bq")
+
+[editable path="turret_default_meshes/turret_interface"]

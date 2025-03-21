@@ -16,5 +16,5 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body != null && body.is_in_group("player"):
 		if material != null:
-			var inst_material = material.instantiate()
+			var inst_material := material.instantiate()
 			add_child(inst_material)

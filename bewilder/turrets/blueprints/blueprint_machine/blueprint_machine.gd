@@ -1,26 +1,26 @@
 extends Node3D
 
-@onready var left_slot = $Interface/SubViewport/left_slot
-@onready var middle_slot = $Interface/SubViewport/middle_slot
-@onready var right_slot = $Interface/SubViewport/right_slot
+@onready var left_slot := $Interface/SubViewport/left_slot
+@onready var middle_slot := $Interface/SubViewport/middle_slot
+@onready var right_slot := $Interface/SubViewport/right_slot
 
 @onready var unlocked_bps : Array
-@onready var spawner_blueprint = $spawner_blueprint
+@onready var spawner_blueprint := $spawner_blueprint
 
-@onready var default_blueprint = preload("res://turrets/blueprints/default_blueprint.tscn")
+@onready var default_blueprint := preload("res://turrets/blueprints/default_blueprint.tscn")
 
-@onready var anim_player = $AnimationPlayer
+@onready var anim_player := $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
-var left_number = 0
-var middle_number = 1
-var right_number = 2
+var left_number := 0
+var middle_number := 1
+var right_number := 2
 
 var order_applied : bool = false
 
 func _ready() -> void:
 	pass
 
-func check_max():
+func check_max() -> void:
 	if is_max_left:
 		can_go_previous = false
 		can_go_next = true
@@ -53,7 +53,7 @@ func is_in_order() -> bool:
 
 func _process(delta: float) -> void:
 	unlocked_bps = Events.unlocked_blueprints
-	var size = unlocked_bps.size()
+	var size := unlocked_bps.size()
 	if unlocked_bps != null && !unlocked_bps.is_empty():
 		middle_slot.visible = true
 		if size == 1:
@@ -95,7 +95,7 @@ var is_max_right : bool = false
 var is_max_left : bool = false
 var deactivade_both : bool = false
 
-func _next():
+func _next() -> void:
 	if can_go_next:
 		if unlocked_bps.size() == 2: ## CASO SO TENHA 2, FICAR NESSA BRINCADEIRA AQ
 			if is_max_left and !is_max_right:
@@ -115,7 +115,7 @@ func _next():
 			right_number += 1
 			is_max_left = false
 			
-func _previous():
+func _previous() -> void:
 	if can_go_previous:
 		if unlocked_bps.size() == 2: ## CASO SO TENHA 2, FICAR NESSA BRINCADEIRA AQ
 			if is_max_right and !is_max_left:
@@ -151,7 +151,7 @@ func _on_right_area_body_entered(body: Node3D) -> void:
 func _on_confirm_area_body_entered(body: Node3D) -> void:
 	anim_player.play("button_confirm_press")
 	if body != null and body is Player && !unlocked_bps.is_empty():
-		var selected_blueprint
+		var selected_blueprint : String
 		if unlocked_bps.size() == 1:
 			selected_blueprint = unlocked_bps.front()
 		elif unlocked_bps.size() == 2:
@@ -161,7 +161,7 @@ func _on_confirm_area_body_entered(body: Node3D) -> void:
 				selected_blueprint = unlocked_bps[left_number]
 		else:
 			selected_blueprint = unlocked_bps[middle_number]
-		var inst_blueprint = default_blueprint.instantiate()
+		var inst_blueprint := default_blueprint.instantiate()
 		get_parent().add_child(inst_blueprint)
 		inst_blueprint.turret_to_spawn = selected_blueprint
 		inst_blueprint.global_position = spawner_blueprint.global_position

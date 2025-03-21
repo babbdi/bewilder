@@ -275,7 +275,7 @@ bones/59/position = Vector3(-2.43053, -0.0106509, -3.65131)
 bones/59/rotation = Quaternion(-0.706103, 0.0376582, -0.0376578, 0.706103)
 
 [node name="hairFrontBang" parent="stella_imported/Stella/Skeleton3D" index="0"]
-transform = Transform3D(0.608708, -0.00179351, 0.00155276, 0.00178495, 0.608701, 0.00334927, -0.0015626, -0.00334471, 0.608702, -0.629846, 4.41948, 0.994809)
+transform = Transform3D(0.608706, -0.0021954, 0.00189835, 0.00218258, 0.608695, 0.00409809, -0.00191307, -0.0040912, 0.608696, -0.629353, 4.41931, 0.995875)
 
 [node name="hairFrontBang" parent="stella_imported/Stella/Skeleton3D/hairFrontBang" index="0"]
 transform = Transform3D(1, 7.98362e-20, 0, 9.635e-21, 1, 1.81899e-12, 0, -3.63798e-12, 1, 0, -5.72205e-06, 0.287985)
@@ -299,7 +299,7 @@ process_thread_group = 0
 physics_interpolation_mode = 0
 auto_translate_mode = 0
 editor_description = ""
-transform = Transform3D(0.960635, 0.25659, -0.106497, -0.277747, 0.895361, -0.348116, 0.0060302, 0.363992, 0.931383, 1.06061, 4.68263, 0.581114)
+transform = Transform3D(0.960635, 0.25659, -0.106497, -0.277747, 0.895361, -0.348116, 0.00603019, 0.363992, 0.931383, 1.06061, 4.68263, 0.581114)
 rotation_edit_mode = 0
 rotation_order = 2
 top_level = false
@@ -323,7 +323,7 @@ process_thread_group = 0
 physics_interpolation_mode = 0
 auto_translate_mode = 0
 editor_description = ""
-transform = Transform3D(0.960635, -0.25659, 0.106497, 0.277747, 0.895361, -0.348116, -0.0060302, 0.363992, 0.931383, -1.06061, 4.68263, 0.581114)
+transform = Transform3D(0.960635, -0.25659, 0.106497, 0.277747, 0.895361, -0.348116, -0.00603019, 0.363992, 0.931383, -1.06061, 4.68263, 0.581114)
 rotation_edit_mode = 0
 rotation_order = 2
 top_level = false
@@ -347,7 +347,7 @@ process_thread_group = 0
 physics_interpolation_mode = 0
 auto_translate_mode = 0
 editor_description = ""
-transform = Transform3D(0.999916, 0.0129897, 0.000119281, 0.00971915, -0.742, -0.67033, -0.00861889, 0.670274, -0.742064, 4.97838e-14, 4.99417, 0.792917)
+transform = Transform3D(0.999874, 0.0158914, 0.000178413, 0.0118688, -0.739217, -0.673362, -0.0105688, 0.673279, -0.739313, 4.97838e-14, 4.99417, 0.792917)
 rotation_edit_mode = 0
 rotation_order = 2
 top_level = false

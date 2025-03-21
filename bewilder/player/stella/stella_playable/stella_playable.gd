@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody3D
 
+
+
 @export_group("Stats")
 @export var health := 100.0
 @export var regeneration := 0.5
@@ -23,8 +25,8 @@ var max_accelaration : float
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
-
-var where_to = "none"
+@export var _look_at : Marker3D
+var where_to := "none"
 var tilt_upper_limit := PI / 3.0
 var tilt_lower_limit := -PI / 8.0
 @export var tp_tilt_upper_limit := PI / 3.0
@@ -45,7 +47,7 @@ var _camera_input_direction := Vector2.ZERO
 ## Each frame, we find the height of the ground below the player and store it here.
 ## The camera uses this to keep a fixed height while the player jumps, for example.
 var ground_height := 0.0
-var is_in_interaction = false
+var is_in_interaction := false
 @onready var spring_arm_3d: SpringArm3D = $CameraPivot/SpringArm3D
 
 
@@ -62,11 +64,11 @@ var is_in_interaction = false
 @onready var _landing_sound: AudioStreamPlayer3D = %LandingSound
 @onready var _jump_sound: AudioStreamPlayer3D = %JumpSound
 @onready var _dust_particles: GPUParticles3D = %DustParticles
-
+@export var where_head_is : Marker3D
 var is_holding : bool = false
 var is_running_fast : bool = false
 
-signal first_person(look_at)
+signal first_person(look_at : Node3D)
 
 func _ready() -> void:
 	max_move_speed = move_speed
@@ -76,11 +78,6 @@ func _ready() -> void:
 		velocity = Vector3.ZERO
 		_skin.idle()
 		set_physics_process(true)
-	)
-	Events.flag_reached.connect(func on_flag_reached() -> void:
-		set_physics_process(false)
-		_skin.idle()
-		_dust_particles.emitting = false
 	)
 
 
@@ -93,9 +90,9 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		#first_person(null)
 	
-	var max_spring = 12.0
-	var min_spring = 3.0
-	var cur_spring = spring_arm_3d.spring_length
+	var max_spring := 12.0
+	var min_spring := 3.0
+	var cur_spring : float = spring_arm_3d.spring_length 
 	if cur_spring != fp_spring_length:
 		if event.is_action_pressed("scroll_up"):
 			if cur_spring < max_spring:
@@ -107,8 +104,8 @@ func _input(event: InputEvent) -> void:
 @export_group("Grab")
 @export var grab_location : Node3D
 var held_object : Node3D
-func interact():
-	var obj
+func interact() -> void:
+	var obj : Node3D
 	if %raycast_grab.is_colliding() && !is_holding && held_object == null:
 		obj = %raycast_grab.get_collider()
 	if Input.is_action_just_pressed("interact"):
@@ -131,7 +128,7 @@ func interact():
 				#first_person(obj.get_parent().get_parent().head)
 
 func _unhandled_input(event: InputEvent) -> void:
-	var is_object_being_held = held_object == null
+	var is_object_being_held := held_object == null
 	var player_is_using_mouse := (
 		event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	)
@@ -241,7 +238,7 @@ func _physics_process(delta: float) -> void:
 	interact()
 	move_and_slide()
 	
-var saved_length
+var saved_length : float
 
 func _on_first_person(look_at: Variant) -> void:
 	#print("\n")
@@ -270,7 +267,7 @@ func _on_first_person(look_at: Variant) -> void:
 
 
 		
-func change_spring_arm(where_to_, delta):
+func change_spring_arm(where_to_ : String, delta : float) -> void:
 	#print("spr ", spring_arm_3d.spring_length)
 	match where_to_:
 		"zoom_in":
@@ -293,7 +290,7 @@ func change_spring_arm(where_to_, delta):
 			#if spring_arm_3d.spring_length == saved_length:
 			#	where_to = "none"
 
-func take_damage(attack: Attack):
+func take_damage(attack: Attack) -> void:
 	health -= attack.attack_damage
 	velocity.x = (global_transform.origin.x - attack.attack_position.x) * attack.knockback_force
 	#velocity.y = (global_transform.origin.y - attack.attack_position.y) * attack.knockback_force / 2

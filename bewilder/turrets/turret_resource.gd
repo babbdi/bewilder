@@ -7,7 +7,7 @@ class_name turret_resource extends Resource
 @export var reload_sound : AudioStream
 
 
-var ray_cast
+var ray_cast : RayCast3D
 
 @export_group("Stats")
 @export var max_health : float = 100.0

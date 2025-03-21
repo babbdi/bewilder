@@ -13,8 +13,8 @@ var current_health := 0.0:
 @export var what_detects : Array[String]
 @export var parent: CharacterBody3D 
 
-var target_group
-var target
+#var target_group : float
+var target : Node3D
 var targets : Array
 #var is_in_attack_range = false
 
@@ -48,10 +48,10 @@ func _process(delta: float) -> void:
 		parent.target = targets[0]
 	%MeshInstance3D5.mesh.text ="TARGETS: " + str(targets)
 
-func set_max_health(new_max_health):
+func set_max_health(new_max_health : float) -> void:
 	max_health = new_max_health
 
-func set_current_health(new_current_health):
+func set_current_health(new_current_health : float) -> void:
 	if new_current_health < current_health:
 		%anim_debug.play("hurt")
 	else:
@@ -63,6 +63,6 @@ func set_current_health(new_current_health):
 	
 
 	
-func debug():
+func debug() -> void:
 	%HealthBar.max_value = max_health
 	%HealthBar.value = current_health

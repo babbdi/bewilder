@@ -14,15 +14,15 @@ var is_progress_bar_full : bool = false
 var is_all_required_material_near: bool = false
 var is_previwed : bool = false
 
-@onready var debug_mesh = %MeshInstance3D2
+@onready var debug_mesh := %MeshInstance3D2
 @export var necessary_materials : Array[String]
 @export var near_materials : Array[resource_material]
 
 
-func disable_collision():
+func disable_collision() -> void:
 	%CollisionShape3D.disabled = true
 	self.freeze = true
-func enable_collision():
+func enable_collision() -> void:
 	%CollisionShape3D.disabled = false
 	self.freeze = false
 func _process(delta: float) -> void:
@@ -57,32 +57,32 @@ func _process(delta: float) -> void:
 	check_progress_bar()
 	debug_mesh.mesh.text = "NECESSARY MATERIALS: " + str(necessary_materials) 
 
-var should_show = false
-func progress_show():
+var should_show := false
+func progress_show() -> void:
 	if should_show:
 		%anim_player_fade.play("fade_in")
 		should_show = false
 	#last_anim_played = %AnimationPlayer.current_animation
-func progress_hide():
+func progress_hide() -> void:
 	if !should_show:
 		%anim_player_fade.play("fade_in",-1,-1,true)
 		should_show = true
-func hide_sprite():
+func hide_sprite() -> void:
 	%Sprite3D.visible = false
-func show_sprite():
+func show_sprite() -> void:
 	%Sprite3D.visible = true
-func check_progress_bar():
+func check_progress_bar() -> void: 
 	if %ProgressBar.value == %ProgressBar.max_value:
 		is_progress_bar_full = true
 	else:
 		is_progress_bar_full = false
-func interactHold():
+func interactHold() -> void:
 	if is_all_required_material_near:
 		%ProgressBar.value += 1
 	else:
 		%anim_player_flash.play("flash_red")
 		
-func tower_place():
+func tower_place() -> void:
 	for i in near_materials.size():
 		near_materials[i].anim_player.play("is_used")
 	instanciate_tower.just_spawned = true
@@ -90,11 +90,11 @@ func tower_place():
 	#instanciate_tower.active = true
 	%anim_player_fade.play("is_used")
 
-var instanciate_tower
+var instanciate_tower : Node3D
 
-func tower_preview():
+func tower_preview() -> void:
 	if selected_turret != null:
-		var place_selected_turret = selected_turret.instantiate()
+		var place_selected_turret := selected_turret.instantiate()
 		get_parent().add_child(place_selected_turret)
 		instanciate_tower = place_selected_turret
 		place_selected_turret.play_previewing_anim_fade_out()
@@ -123,5 +123,5 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 				near_materials.erase(body)
 			
 
-func is_used():
+func is_used() -> void:
 	queue_free()
